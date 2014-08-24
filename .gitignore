@@ -1,6 +1,12 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
 .gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+local.properties
+.idea
 .DS_Store
 build/
