@@ -1,19 +1,23 @@
 package com.pokebro.Activity;
 
+import android.graphics.Color;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.pokebro.R;
 
 public class MapsActivity extends FragmentActivity implements
@@ -25,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
+    private Circle mapMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +99,22 @@ public class MapsActivity extends FragmentActivity implements
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+//        mapMarker = mMap.addCircle(new CircleOptions()
+//                        .center(new LatLng(0, 0))
+//                        .radius(5)
+//                        .strokeColor(Color.DKGRAY)
+//                        .strokeWidth(5)
+//                        .fillColor(Color.RED)
+//        );
+//        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+    }
+
+    private void updateCircle(Location location) {
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        mapMarker.setCenter(latLng);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
     }
 
     @Override
@@ -102,7 +122,21 @@ public class MapsActivity extends FragmentActivity implements
         Log.i(ACTIVITY_TAG, "GoogleApiClient Connected");
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5000); // Update location every 5 seconds
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(5000);
+
+        Toast.makeText(this, "Waiting for location", Toast.LENGTH_LONG).show();
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        LatLng latLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+
+        mapMarker = mMap.addCircle(new CircleOptions()
+                        .center(latLng)
+                        .radius(5)
+                        .strokeColor(Color.DKGRAY)
+                        .strokeWidth(5)
+                        .fillColor(Color.RED)
+        );
+
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
@@ -120,5 +154,6 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onLocationChanged(Location location) {
         Log.i(ACTIVITY_TAG, "Location received: " + location.toString());
+        updateCircle(location);
     }
 }
