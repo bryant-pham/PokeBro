@@ -1,6 +1,5 @@
 package com.pokebro.Activity;
 
-import android.graphics.Color;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -15,9 +14,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.pokebro.R;
 
 public class MapsActivity extends FragmentActivity implements
@@ -31,7 +31,7 @@ public class MapsActivity extends FragmentActivity implements
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-    private Circle mapMarker;
+    private Marker mapMarker;
     private Location currentLocation;
 
     @Override
@@ -87,12 +87,9 @@ public class MapsActivity extends FragmentActivity implements
 
     private void addAvatar(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        mapMarker = mMap.addCircle(new CircleOptions()
-                        .center(new LatLng(location.getLatitude(), location.getLongitude()))
-                        .radius(5)
-                        .strokeColor(Color.DKGRAY)
-                        .strokeWidth(5)
-                        .fillColor(Color.RED)
+        mapMarker = mMap.addMarker(new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.tinyhero))
+                            .position(latLng)
         );
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
         isInitialLocation = false;
@@ -100,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements
 
     private void updateAvatar(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        mapMarker.setCenter(latLng);
+        mapMarker.setPosition(latLng);
     }
 
     @Override
