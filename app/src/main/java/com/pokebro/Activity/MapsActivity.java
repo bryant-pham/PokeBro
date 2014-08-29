@@ -88,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements
     private void addAvatar(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mapMarker = mMap.addMarker(new MarkerOptions()
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.tinyhero))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.hero))
                             .position(latLng)
         );
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
