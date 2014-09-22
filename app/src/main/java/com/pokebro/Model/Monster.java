@@ -5,7 +5,7 @@ package com.pokebro.Model;
  */
 public class Monster {
     private String name;
-    private String imagePath;
+    private int image;
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class Monster {
         this.name = name;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public int getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(int image) {
+        this.image = image;
     }
 }

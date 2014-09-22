@@ -1,5 +1,6 @@
 package com.pokebro.Activity;
 
+import android.hardware.SensorEventListener;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pokebro.R;
+import com.pokebro.UseCase.StepSensor;
 
 public class MapsActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -33,6 +35,7 @@ public class MapsActivity extends FragmentActivity implements
     private LocationRequest mLocationRequest;
     private Marker mapMarker;
     private Location currentLocation;
+    private StepSensor stepSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,26 +49,28 @@ public class MapsActivity extends FragmentActivity implements
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
+
+        stepSensor = new StepSensor(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        stepSensor.startSensor();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Connect the client.
         mGoogleApiClient.connect();
     }
 
     @Override
     protected void onStop() {
-        // Disconnecting the client invalidates it.
-        mGoogleApiClient.disconnect();
         super.onStop();
+        mGoogleApiClient.disconnect();
+        stepSensor.stopSensor();
     }
 
     private void setUpMapIfNeeded() {
@@ -105,8 +110,8 @@ public class MapsActivity extends FragmentActivity implements
         Log.i(ACTIVITY_TAG, "GoogleApiClient Connected");
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setInterval(2000);
+        mLocationRequest.setFastestInterval(2000);
 
         Toast.makeText(this, "Waiting for location", Toast.LENGTH_LONG).show();
 

@@ -21,15 +21,21 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
         this.minCounterValue = minCounterValue;
         this.maxCounterValue = maxCounterValue;
         this.decrementValue  = decrementValue;
-        initCounter();
-    }
-
-    private void initCounter() {
-        randomEncounter.setRandomCounter(randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue);
+        resetCounter();
     }
 
     private void decrementCounter() {
         randomEncounter.setRandomCounter(randomEncounter.getRandomCounter() - decrementValue);
+    }
+
+    @Override
+    public int getCounter() {
+        return randomEncounter.getRandomCounter();
+    }
+
+    @Override
+    public void resetCounter() {
+        randomEncounter.setRandomCounter(randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue);
     }
 
     @Override

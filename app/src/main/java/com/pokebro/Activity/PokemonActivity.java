@@ -1,36 +1,39 @@
 package com.pokebro.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.pokebro.Model.Monster;
 import com.pokebro.R;
+import com.pokebro.UseCase.RandomPokemonFactory;
+
+import java.util.Random;
 
 public class PokemonActivity extends Activity {
+    private ImageView pokemonView;
+    private RandomPokemonFactory pokemonFactory;
+    private Monster pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon);
+
+        pokemonFactory = new RandomPokemonFactory(new Random());
+        pokemon = pokemonFactory.getRandomPokemon();
+
+        pokemonView = (ImageView) findViewById(R.id.pokemonView);
+        pokemonView.setImageResource(pokemon.getImage());
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.pokemon, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void backToMapActivity(View view) {
+        finish();
     }
 }
+
+
