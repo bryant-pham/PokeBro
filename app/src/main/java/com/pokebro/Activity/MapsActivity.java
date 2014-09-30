@@ -19,8 +19,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.pokebro.Model.RandomEncounter;
 import com.pokebro.R;
+import com.pokebro.UseCase.RandomEncounterManager;
+import com.pokebro.UseCase.RandomEncounterManagerImp;
 import com.pokebro.UseCase.StepSensor;
+
+import java.util.Random;
 
 public class MapsActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -50,7 +55,8 @@ public class MapsActivity extends FragmentActivity implements
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        stepSensor = new StepSensor(this);
+        RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 10, 35, 1);
+        stepSensor = new StepSensor(this, randomEncounterManager);
     }
 
     @Override
@@ -67,8 +73,8 @@ public class MapsActivity extends FragmentActivity implements
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         mGoogleApiClient.disconnect();
         stepSensor.stopSensor();
     }

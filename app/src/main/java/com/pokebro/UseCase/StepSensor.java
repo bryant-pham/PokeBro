@@ -19,38 +19,36 @@ import java.util.Random;
  */
 public class StepSensor implements SensorEventListener {
     private SensorManager sensorMgr;
-    private Sensor stepDetectorSensor;
+    private Sensor stepSensor;
     private Context context;
     private RandomEncounterManager randomEncounterManager;
 
-    public StepSensor(Context context) {
+    public StepSensor(Context context, RandomEncounterManager randomEncounterManager) {
         this.context = context;
+        this.randomEncounterManager = randomEncounterManager;
         sensorMgr = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        stepDetectorSensor = sensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        sensorMgr.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
-        randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 1, 10, 1);
+        stepSensor = sensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
     }
 
     public void stopSensor() {
+        Toast.makeText(context, "Sensor Stopped", Toast.LENGTH_SHORT).show();
         sensorMgr.unregisterListener(this);
     }
 
     public void startSensor() {
-        sensorMgr.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        Toast.makeText(context, "Sensor Started", Toast.LENGTH_SHORT).show();
+        sensorMgr.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST);
         randomEncounterManager.resetCounter();
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Toast.makeText(context, "Step Counter: " + randomEncounterManager.getCounter(), Toast.LENGTH_SHORT).show();
-        float value = sensorEvent.values[0];
         if(randomEncounterManager.encounterMonster()) {
-            //Toast.makeText(context, "POKEMON ENCOUNTERED!", Toast.LENGTH_LONG).show();
             stopSensor();
             Intent pokemonActivityIntent = new Intent(context, PokemonActivity.class);
             context.startActivity(pokemonActivityIntent);
         }
-        Log.i("Step Detector", "Step detected: " + value);
     }
 
     @Override
