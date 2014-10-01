@@ -1,6 +1,7 @@
 package com.pokebro.Activity;
 
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements
                 .build();
 
         RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 10, 35, 1);
-        stepSensor = new StepSensor(this, randomEncounterManager);
+        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), randomEncounterManager);
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.test.AndroidTestCase;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -19,21 +20,24 @@ import org.mockito.MockitoAnnotations;
 /**
  * Created by Bryant on 9/27/2014.
  */
-public class StepSensorTest extends InstrumentationTestCase {
-    @Mock private Context context;
-    @Mock private SensorManager sensorManagerMock;
-    @Mock private RandomEncounterManager randomEncounterManagerMock;
+public class StepSensorTest extends AndroidTestCase {
 
+    private SensorManager sensorManagerMock;
+    private RandomEncounterManager randomEncounterManagerMock;
+
+    private Context context;
     private StepSensor stepSensor;
 
     @Override
     protected void setUp() throws Exception {
-        System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
         super.setUp();
-        MockitoAnnotations.initMocks(this);
+        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
 
-        Mockito.when(context.getSystemService(Context.SENSOR_SERVICE)).thenReturn(sensorManagerMock);
-        stepSensor = new StepSensor(context, randomEncounterManagerMock);
+        sensorManagerMock = Mockito.mock(SensorManager.class);
+        randomEncounterManagerMock = Mockito.mock(RandomEncounterManager.class);
+
+        context = getContext();
+        stepSensor = new StepSensor(context, sensorManagerMock, randomEncounterManagerMock);
     }
 
     public void testStartSensor(){
@@ -42,7 +46,7 @@ public class StepSensorTest extends InstrumentationTestCase {
 
         //Assert
         Mockito.verify(sensorManagerMock, Mockito.times(1))
-                .registerListener(stepSensor, sensorManagerMock.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR), SensorManager.SENSOR_DELAY_FASTEST);
+                .registerListener(stepSensor, sensorManagerMock.getDefaultSensor(Sensor.TYPE_STEP_COUNTER), SensorManager.SENSOR_DELAY_FASTEST);
 
         Mockito.verify(randomEncounterManagerMock, Mockito.times(1))
                 .resetCounter();
@@ -60,10 +64,9 @@ public class StepSensorTest extends InstrumentationTestCase {
     public void testOnSensorChangedOnEncounter() {
         //Arrange
         Intent pokemonActivityIntent = new Intent(context, PokemonActivity.class);
+        pokemonActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Mockito.when(randomEncounterManagerMock.encounterMonster())
                 .thenReturn(true);
-//        Instrumentation.ActivityMonitor activityMonitor =
-//                getInstrumentation().addMonitor(PokemonActivity.class.getName(), null, false);
 
         //Act
         stepSensor.onSensorChanged(Mockito.mock(SensorEvent.class));
@@ -73,7 +76,5 @@ public class StepSensorTest extends InstrumentationTestCase {
                 .unregisterListener(stepSensor);
 //        Mockito.verify(context, Mockito.times(1))
 //                .startActivity(pokemonActivityIntent);
-
-//    getInstrumentation().removeMonitor(activityMonitor);
-}
+    }
 }

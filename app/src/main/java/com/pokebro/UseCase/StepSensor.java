@@ -18,26 +18,24 @@ import java.util.Random;
  * Created by Bryant on 9/17/2014.
  */
 public class StepSensor implements SensorEventListener {
-    private SensorManager sensorMgr;
+    private SensorManager sensorManager;
     private Sensor stepSensor;
     private Context context;
     private RandomEncounterManager randomEncounterManager;
 
-    public StepSensor(Context context, RandomEncounterManager randomEncounterManager) {
+    public StepSensor(Context context, SensorManager sensorManager, RandomEncounterManager randomEncounterManager) {
         this.context = context;
         this.randomEncounterManager = randomEncounterManager;
-        sensorMgr = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        stepSensor = sensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        this.sensorManager = sensorManager;
+        stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
     }
 
     public void stopSensor() {
-        Toast.makeText(context, "Sensor Stopped", Toast.LENGTH_SHORT).show();
-        sensorMgr.unregisterListener(this);
+        sensorManager.unregisterListener(this);
     }
 
     public void startSensor() {
-        Toast.makeText(context, "Sensor Started", Toast.LENGTH_SHORT).show();
-        sensorMgr.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST);
         randomEncounterManager.resetCounter();
     }
 
@@ -47,6 +45,7 @@ public class StepSensor implements SensorEventListener {
         if(randomEncounterManager.encounterMonster()) {
             stopSensor();
             Intent pokemonActivityIntent = new Intent(context, PokemonActivity.class);
+            pokemonActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(pokemonActivityIntent);
         }
     }
