@@ -4,6 +4,7 @@ import com.pokebro.Model.Monster;
 import com.pokebro.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Random;
 
@@ -12,7 +13,6 @@ import java.util.Random;
  */
 public class RandomPokemonFactory {
     private static final Hashtable<String, Integer> pokemonTable = new Hashtable();
-    private static final ArrayList<String> pokemonNames = new ArrayList<String>();
     private Random randomNumberGenerator;
 
     static {
@@ -25,17 +25,9 @@ public class RandomPokemonFactory {
         pokemonTable.put("squirtle", R.drawable._007);
         pokemonTable.put("wartortle", R.drawable._008);
         pokemonTable.put("blastoise", R.drawable._009);
-
-        pokemonNames.add("bulbasaur");
-        pokemonNames.add("ivysaur");
-        pokemonNames.add("venusaur");
-        pokemonNames.add("charmander");
-        pokemonNames.add("charmeleon");
-        pokemonNames.add("charizard");
-        pokemonNames.add("squirtle");
-        pokemonNames.add("wartortle");
-        pokemonNames.add("blastoise");
     }
+
+    private static final ArrayList<String> pokemonNames = Collections.list(pokemonTable.keys());
 
     public RandomPokemonFactory(Random randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
