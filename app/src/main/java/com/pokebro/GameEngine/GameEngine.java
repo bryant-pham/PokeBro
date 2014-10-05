@@ -7,5 +7,4 @@ import com.pokebro.Model.Monster;
  */
 public interface GameEngine {
     public void stepSensed();
-    public Monster createRandomMonster();
 }
