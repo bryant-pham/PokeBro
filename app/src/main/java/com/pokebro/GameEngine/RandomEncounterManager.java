@@ -1,4 +1,4 @@
-package com.pokebro.UseCase;
+package com.pokebro.GameEngine;
 
 /**
  * Created by Bryant on 8/17/2014.

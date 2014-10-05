@@ -1,4 +1,4 @@
-package com.pokebro.UseCase;
+package com.pokebro.GameEngine;
 
 import com.pokebro.Model.Monster;
 import com.pokebro.R;
@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Created by Bryant on 9/21/2014.
  */
-public class RandomPokemonFactory {
+public class RandomPokemonFactory implements RandomMonsterFactory {
     private static final Hashtable<String, Integer> pokemonTable = new Hashtable();
     private Random randomNumberGenerator;
 
@@ -33,7 +33,8 @@ public class RandomPokemonFactory {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public Monster getRandomPokemon() {
+    @Override
+    public Monster createRandomMonster() {
         int minCounterValue = 0;
         int maxCounterValue = pokemonNames.size() - 1;
         int randomNumber = randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
@@ -41,9 +42,7 @@ public class RandomPokemonFactory {
         String pokemonName = pokemonNames.get(randomNumber);
         int drawableResource = pokemonTable.get(pokemonName);
 
-        Monster pokemon = new Monster();
-        pokemon.setName(pokemonName);
-        pokemon.setImage(drawableResource);
+        Monster pokemon = new Monster(pokemonName, drawableResource);
 
         return pokemon;
     }

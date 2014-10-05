@@ -1,4 +1,4 @@
-package com.pokebro.UseCase;
+package com.pokebro.GameEngine;
 
 import com.pokebro.Model.RandomEncounter;
 
@@ -25,7 +25,11 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
     }
 
     private void decrementCounter() {
-        randomEncounter.setRandomCounter(randomEncounter.getRandomCounter() - decrementValue);
+        randomEncounter.decrementCounter(decrementValue);
+    }
+
+    private int getRandomNumber() {
+        return randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
 
     @Override
     public void resetCounter() {
-        randomEncounter.setRandomCounter(randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue);
+        randomEncounter.setRandomCounter(getRandomNumber());
     }
 
     @Override
