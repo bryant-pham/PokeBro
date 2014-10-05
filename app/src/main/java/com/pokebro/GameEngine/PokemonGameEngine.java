@@ -1,5 +1,7 @@
 package com.pokebro.GameEngine;
 
+import com.pokebro.Model.Monster;
+
 /**
  * Created by Bryant on 10/4/2014.
  */
@@ -15,11 +17,11 @@ public class PokemonGameEngine implements GameEngine {
 
     @Override
     public void stepSensed() {
-
+        randomEncounterMgr.shouldEncounterMonster();
     }
 
     @Override
-    public void createRandomPokemon() {
-
+    public Monster createRandomMonster() {
+        return randomMonsterFactory.createRandomMonster();
     }
 }
