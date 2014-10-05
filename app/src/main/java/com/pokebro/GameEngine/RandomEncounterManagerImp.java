@@ -28,7 +28,7 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
         randomEncounter.decrementCounter(decrementValue);
     }
 
-    private int getRandomNumber() {
+    private int generateRandomNumber() {
         return randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
     }
 
@@ -39,7 +39,7 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
 
     @Override
     public void resetCounter() {
-        randomEncounter.setRandomCounter(getRandomNumber());
+        randomEncounter.setRandomCounter(generateRandomNumber());
     }
 
     @Override

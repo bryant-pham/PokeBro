@@ -33,13 +33,15 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    @Override
-    public Monster createRandomMonster() {
+    private int generateRandomNumber() {
         int minCounterValue = 0;
         int maxCounterValue = pokemonNames.size() - 1;
-        int randomNumber = randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
+        return randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
+    }
 
-        String pokemonName = pokemonNames.get(randomNumber);
+    @Override
+    public Monster createRandomMonster() {
+        String pokemonName = pokemonNames.get(generateRandomNumber());
         int drawableResource = pokemonTable.get(pokemonName);
 
         Monster pokemon = new Monster(pokemonName, drawableResource);
