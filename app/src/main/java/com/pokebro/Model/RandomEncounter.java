@@ -13,4 +13,8 @@ public class RandomEncounter {
     public void setRandomCounter(int randomCounter) {
         this.randomCounter = randomCounter;
     }
+
+    public void decrementCounter(int decrementValue) {
+        this.randomCounter -= decrementValue;
+    }
 }
