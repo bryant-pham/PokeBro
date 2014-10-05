@@ -43,7 +43,7 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
     }
 
     @Override
-    public boolean encounterMonster() {
+    public boolean shouldEncounterMonster() {
         decrementCounter();
         return randomEncounter.getRandomCounter() <= 0;
     }

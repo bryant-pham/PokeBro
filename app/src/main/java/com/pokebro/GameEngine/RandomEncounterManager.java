@@ -6,5 +6,5 @@ package com.pokebro.GameEngine;
 public interface RandomEncounterManager {
     public int getCounter();
     public void resetCounter();
-    public boolean encounterMonster();
+    public boolean shouldEncounterMonster();
 }
