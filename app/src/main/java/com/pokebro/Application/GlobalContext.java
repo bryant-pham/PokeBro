@@ -2,8 +2,8 @@ package com.pokebro.Application;
 
 import android.app.Application;
 
-import com.pokebro.Adapters.PokebroUserInterface;
-import com.pokebro.Adapters.UserInterface;
+import com.pokebro.Adapter.PokebroUserInterface;
+import com.pokebro.Adapter.UserInterface;
 import com.pokebro.GameEngine.GameEngine;
 import com.pokebro.GameEngine.PokemonGameEngine;
 

@@ -1,6 +1,6 @@
 package com.pokebro.GameEngine;
 
-import com.pokebro.Adapters.UserInterface;
+import com.pokebro.Adapter.UserInterface;
 import com.pokebro.Model.Monster;
 import com.pokebro.Model.RandomEncounter;
 

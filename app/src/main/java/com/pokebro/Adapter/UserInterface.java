@@ -1,4 +1,4 @@
-package com.pokebro.Adapters;
+package com.pokebro.Adapter;
 
 import com.pokebro.Model.Monster;
 

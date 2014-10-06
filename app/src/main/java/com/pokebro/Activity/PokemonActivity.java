@@ -1,19 +1,14 @@
 package com.pokebro.Activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.pokebro.Model.Monster;
 import com.pokebro.R;
-import com.pokebro.UseCase.RandomPokemonFactory;
+import com.pokebro.GameEngine.RandomPokemonFactory;
 import com.pokebro.Utility.BitmapResizeUtil;
 
 import java.util.Random;
@@ -29,7 +24,7 @@ public class PokemonActivity extends Activity {
         setContentView(R.layout.activity_pokemon);
 
         pokemonFactory = new RandomPokemonFactory(new Random());
-        pokemon = pokemonFactory.getRandomPokemon();
+        pokemon = pokemonFactory.createRandomMonster();
 
         Bitmap resizedDrawable = BitmapResizeUtil.getResizedDrawable(getResources(), pokemon.getImage());
 

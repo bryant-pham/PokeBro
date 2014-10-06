@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.pokebro.Application.GlobalContext;
 import com.pokebro.GameEngine.GameEngine;
 import com.pokebro.R;
-import com.pokebro.UseCase.StepSensor;
+import com.pokebro.Input.StepSensor;
 
 public class MapsActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,

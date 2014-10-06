@@ -1,4 +1,4 @@
-package com.pokebro.UseCase;
+package com.pokebro.Input;
 
 import android.content.Context;
 import android.hardware.Sensor;
