@@ -1,24 +1,27 @@
-package com.pokebro.UseCase;
+package com.pokebro.GameEngine;
 
 /**
  * Created by Bryant on 8/17/2014.
  */
 
-import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.test.AndroidTestCase;
+
+import com.pokebro.GameEngine.RandomEncounterManager;
+import com.pokebro.GameEngine.RandomEncounterManagerImp;
 import com.pokebro.Model.RandomEncounter;
+
 import org.mockito.Mockito;
 
 import java.util.Random;
 
-public class RandomEncounterManagerImpTest extends InstrumentationTestCase {
+public class RandomEncounterManagerImpTest extends AndroidTestCase {
 
-    RandomEncounterManager randomEncounterManagerImp;
+    RandomEncounterManager randomEncounterMgrImp;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
+        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
 
         int minCounterValue = 2;
         int maxCounterValue = 2;
@@ -28,20 +31,19 @@ public class RandomEncounterManagerImpTest extends InstrumentationTestCase {
         Mockito.when(randomNumberGeneratorMock.nextInt()).thenReturn(0);
         RandomEncounter randomEncounter = new RandomEncounter();
 
-        randomEncounterManagerImp = new RandomEncounterManagerImp(randomNumberGeneratorMock, randomEncounter, minCounterValue, maxCounterValue, decrementValue);
+        randomEncounterMgrImp = new RandomEncounterManagerImp(randomNumberGeneratorMock, randomEncounter, minCounterValue, maxCounterValue, decrementValue);
     }
 
     public void testEncounterMonster() {
         //counter should be 1 after this call, which does not cause a monster encounter
-        boolean resultShouldBeFalse = randomEncounterManagerImp.encounterMonster();
+        boolean resultShouldBeFalse = randomEncounterMgrImp.shouldEncounterMonster();
 
         //counter should be 0 after this call, which causes a monster encounter
-        boolean resultShouldBeTrue = randomEncounterManagerImp.encounterMonster();
+        boolean resultShouldBeTrue = randomEncounterMgrImp.shouldEncounterMonster();
 
         assertFalse(resultShouldBeFalse);
         assertTrue(resultShouldBeTrue);
     }
-
 
     @Override
     protected void tearDown() throws Exception {
