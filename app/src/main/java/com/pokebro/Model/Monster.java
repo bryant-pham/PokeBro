@@ -5,11 +5,11 @@ package com.pokebro.Model;
  */
 public class Monster {
     private String name;
-    private int image;
+    private int imageResource;
 
     public Monster(String name, int image) {
         this.name = name;
-        this.image = image;
+        this.imageResource = image;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class Monster {
         this.name = name;
     }
 
-    public int getImage() {
-        return image;
+    public int getImageResource() {
+        return imageResource;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImageResource(int image) {
+        this.imageResource = image;
     }
 }
