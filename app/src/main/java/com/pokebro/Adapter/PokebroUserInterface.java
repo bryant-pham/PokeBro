@@ -22,9 +22,8 @@ public class PokebroUserInterface implements UserInterface {
     public void startMonsterActivity(Monster monster) {
         Intent pokemonActivityIntent = new Intent(context, PokemonActivity.class);
         pokemonActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Bundle bundle = new Bundle();
-        //bundle.putParcelable("pokemon", monster);
-        //pokemonActivityIntent.putExtra("pokemon", );
+        MonsterParcelable monsterParcelable = new MonsterParcelable(monster.getName(), monster.getImageResource());
+        pokemonActivityIntent.putExtra("pokemon", monsterParcelable);
         context.startActivity(pokemonActivityIntent);
     }
 }

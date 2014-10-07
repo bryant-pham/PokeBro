@@ -12,7 +12,7 @@ import java.util.Random;
 public class PokemonGameEngine implements GameEngine {
 
     private RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random());
-    private RandomEncounterManager randomEncounterMgr = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 10, 15, 1);
+    private RandomEncounterManager randomEncounterMgr = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 0, 0, 1);
 
     private UserInterface ui;
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.pokebro.Adapter.MonsterParcelable;
 import com.pokebro.Model.Monster;
 import com.pokebro.R;
 import com.pokebro.GameEngine.RandomPokemonFactory;
@@ -23,10 +24,9 @@ public class PokemonActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon);
 
-        pokemonFactory = new RandomPokemonFactory(new Random());
-        pokemon = pokemonFactory.createRandomMonster();
+        MonsterParcelable pokemon = getIntent().getParcelableExtra("pokemon");
 
-        Bitmap resizedDrawable = BitmapResizeUtil.getResizedDrawable(getResources(), pokemon.getImage());
+        Bitmap resizedDrawable = BitmapResizeUtil.getResizedDrawable(getResources(), pokemon.getDrawableResoure());
 
         pokemonView = (ImageView) findViewById(R.id.pokemonView);
         pokemonView.setImageBitmap(resizedDrawable);
