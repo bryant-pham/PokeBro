@@ -8,14 +8,37 @@
         android:id="@+id/pokemonView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="center"/>
+        android:scaleType="center"
+        android:layout_marginTop="5dp"/>
 
-    <Button
-        android:id="@+id/back"
+    <TextView
+        android:id="@+id/pokemonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:onClick="backToMapActivity"
-        android:text="Back to Map"/>
+        android:layout_below="@id/pokemonView"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="backToMapActivity"
+            android:layout_weight="1"
+            android:text="Catch"/>
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="backToMapActivity"
+            android:layout_weight="1"
+            android:text="Back to Map"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
