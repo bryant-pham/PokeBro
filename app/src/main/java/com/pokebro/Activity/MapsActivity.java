@@ -32,11 +32,10 @@ public class MapsActivity extends FragmentActivity implements
         LocationListener {
 
     private final String ACTIVITY_TAG = "MapActivity";
-    private boolean isInitialLocation = true;
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
     private Marker mapMarker;
-    private Location currentLocation;
+    private Location lastLocation;
     private StepSensor stepSensor;
 
     private final float zoomLevel = 17;
@@ -65,7 +64,6 @@ public class MapsActivity extends FragmentActivity implements
         super.onResume();
         setUpMapIfNeeded();
         stepSensor.startSensor();
-        //isInitialLocation = true;
     }
 
     @Override
@@ -90,14 +88,14 @@ public class MapsActivity extends FragmentActivity implements
             map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
                 public void onMapLongClick(LatLng latLng) {
-                    LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    LatLng currentLatLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, zoomLevel));
                 }
             });
         }
     }
 
-    private void addAvatar(Location location) {
+    private void addAvatarToMap(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mapMarker = map.addMarker(new MarkerOptions()
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.hero))
@@ -111,9 +109,13 @@ public class MapsActivity extends FragmentActivity implements
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
-    private void updateAvatar(Location location) {
+    private void updateAvatarPosition(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mapMarker.setPosition(latLng);
+
+        // Centers camera on avatar if distance between current and last location is > ~0.25 miles - used for initial GPS inaccuracies
+        if(lastLocation.distanceTo(location) > 400)
+            map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 
     @Override
@@ -123,8 +125,6 @@ public class MapsActivity extends FragmentActivity implements
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(2000);
         locationRequest.setFastestInterval(2000);
-
-        //Toast.makeText(this, "Waiting for location", Toast.LENGTH_LONG).show();
 
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
@@ -142,12 +142,11 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onLocationChanged(Location location) {
         Log.i(ACTIVITY_TAG, "Location received: " + location.toString());
-        currentLocation = location;
-        if(isInitialLocation) {
-            addAvatar(location);
-            isInitialLocation = false;
-        } else {
-            updateAvatar(location);
-        }
+        if(lastLocation == null)
+            addAvatarToMap(location);
+        else
+            updateAvatarPosition(location);
+
+        lastLocation = location;
     }
 }
