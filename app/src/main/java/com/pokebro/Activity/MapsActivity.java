@@ -12,10 +12,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -30,14 +32,15 @@ public class MapsActivity extends FragmentActivity implements
         LocationListener {
 
     private final String ACTIVITY_TAG = "MapActivity";
-    private final float zoomLevel = 17;
     private boolean isInitialLocation = true;
-    private GoogleMap mMap;
-    private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
+    private GoogleMap map;
+    private GoogleApiClient googleApiClient;
     private Marker mapMarker;
     private Location currentLocation;
     private StepSensor stepSensor;
+
+    private final float zoomLevel = 17;
+    private final float tiltLevel = 67.5f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements
 
         setUpMapIfNeeded();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -62,33 +65,33 @@ public class MapsActivity extends FragmentActivity implements
         super.onResume();
         setUpMapIfNeeded();
         stepSensor.startSensor();
+        //isInitialLocation = true;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+        googleApiClient.connect();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mGoogleApiClient.disconnect();
+        googleApiClient.disconnect();
         stepSensor.stopSensor();
     }
 
     private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (map == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+            map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
 
-            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
                 public void onMapLongClick(LatLng latLng) {
                     LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, zoomLevel));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, zoomLevel));
                 }
             });
         }
@@ -96,12 +99,16 @@ public class MapsActivity extends FragmentActivity implements
 
     private void addAvatar(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        mapMarker = mMap.addMarker(new MarkerOptions()
+        mapMarker = map.addMarker(new MarkerOptions()
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.hero))
                             .position(latLng)
         );
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
-        isInitialLocation = false;
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                                            .target(latLng)
+                                            .zoom(zoomLevel)
+                                            .tilt(tiltLevel)
+                                            .build();
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     private void updateAvatar(Location location) {
@@ -112,14 +119,14 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onConnected(Bundle bundle) {
         Log.i(ACTIVITY_TAG, "GoogleApiClient Connected");
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(2000);
-        mLocationRequest.setFastestInterval(2000);
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(2000);
+        locationRequest.setFastestInterval(2000);
 
-        Toast.makeText(this, "Waiting for location", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Waiting for location", Toast.LENGTH_LONG).show();
 
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
 
     @Override
@@ -136,9 +143,11 @@ public class MapsActivity extends FragmentActivity implements
     public void onLocationChanged(Location location) {
         Log.i(ACTIVITY_TAG, "Location received: " + location.toString());
         currentLocation = location;
-        if(isInitialLocation)
+        if(isInitialLocation) {
             addAvatar(location);
-        else
+            isInitialLocation = false;
+        } else {
             updateAvatar(location);
+        }
     }
 }
