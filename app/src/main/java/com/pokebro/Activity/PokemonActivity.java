@@ -18,7 +18,6 @@ import java.util.Random;
 public class PokemonActivity extends Activity {
     private ImageView pokemonView;
     private TextView pokemonNameView;
-    private Monster pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
