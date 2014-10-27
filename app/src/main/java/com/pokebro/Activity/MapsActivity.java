@@ -113,9 +113,10 @@ public class MapsActivity extends FragmentActivity implements
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mapMarker.setPosition(latLng);
 
-        // Centers camera on avatar if distance between current and last location is > ~0.25 miles - used for initial GPS inaccuracies
-        if(lastLocation.distanceTo(location) > 400)
+        // Centers camera on avatar if distance between current and last location is > ~0.125 miles - used for initial GPS inaccuracies
+        if(lastLocation.distanceTo(location) > 100) {
             map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
     }
 
     @Override
