@@ -29,7 +29,7 @@ public class RandomPokemonFactoryTest {
     }
 
     @Test
-    public void testCreateRandomMonster() throws Exception {
+    public void testCreateRandomMonster_returnsMonster() throws Exception {
         Monster returnedMonster = randomPokemonFactory.createRandomMonster();
 
         assertThat(returnedMonster, instanceOf(Monster.class));
