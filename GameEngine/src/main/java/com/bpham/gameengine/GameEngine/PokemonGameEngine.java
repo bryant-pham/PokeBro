@@ -11,13 +11,15 @@ import java.util.Random;
  */
 public class PokemonGameEngine implements GameEngine {
 
-    private RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random());
-    private RandomEncounterManager randomEncounterMgr = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 10, 15, 1);
+    private RandomMonsterFactory randomMonsterFactory;
+    private RandomEncounterManager randomEncounterMgr;
 
     private UserInterface ui;
 
-    public PokemonGameEngine(UserInterface ui) {
+    public PokemonGameEngine(UserInterface ui, RandomMonsterFactory randomMonsterFactory, RandomEncounterManager randomEncounterMgr) {
         this.ui = ui;
+        this.randomMonsterFactory = randomMonsterFactory;
+        this.randomEncounterMgr = randomEncounterMgr;
     }
 
     private Monster createRandomMonster() {
