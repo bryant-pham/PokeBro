@@ -15,13 +15,12 @@ public class PokemonGameEngineTest {
 
     @Mock private RandomMonsterFactory monsterFactoryMock;
     @Mock private RandomEncounterManager encounterManagerMock;
-    @Mock UserInterface uiMock;
     private GameEngine pokemonGameEngine;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pokemonGameEngine = new PokemonGameEngine(uiMock, monsterFactoryMock, encounterManagerMock);
+        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock);
     }
 
     @After
@@ -37,7 +36,6 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
-        verify(uiMock, times(1)).startMonsterActivity(mockMonster);
         verify(encounterManagerMock, times(1)).resetCounter();
     }
 
@@ -48,7 +46,6 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
-        verify(uiMock, times(0)).startMonsterActivity(mockMonster);
         verify(encounterManagerMock, times(0)).resetCounter();
     }
 }
