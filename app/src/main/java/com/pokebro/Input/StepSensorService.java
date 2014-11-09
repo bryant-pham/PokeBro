@@ -6,6 +6,9 @@ import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.bpham.gameengine.GameEngine.GameEngine;
+import com.pokebro.Application.GlobalContext;
+
 public class StepSensorService extends Service {
 
     private StepSensor stepSensor;
@@ -15,7 +18,9 @@ public class StepSensorService extends Service {
 
     @Override
     public void onCreate() {
-        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE));
+        GlobalContext globalContext = (GlobalContext) getApplicationContext();
+        GameEngine gameEngine = globalContext.getGameEngine();
+        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), gameEngine);
     }
 
     @Override
