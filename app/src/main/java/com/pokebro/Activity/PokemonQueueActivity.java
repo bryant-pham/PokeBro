@@ -2,10 +2,14 @@ package com.pokebro.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bpham.gameengine.GameEngine.GameEngine;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
+import com.pokebro.Adapter.PokemonQueueArrayAdapter;
 import com.pokebro.Application.GlobalContext;
 import com.pokebro.R;
 
@@ -17,6 +21,8 @@ public class PokemonQueueActivity extends Activity implements Observer {
 
     private MonsterQueueObservable monsterQueueObservable;
     private List<Monster> monsterQueue;
+    private GameEngine gameEngine;
+    private ListView pokemonListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +30,27 @@ public class PokemonQueueActivity extends Activity implements Observer {
         setContentView(R.layout.activity_pokemon_queue);
 
         GlobalContext globalContext = (GlobalContext) getApplicationContext();
-        GameEngine gameEngine = globalContext.getGameEngine();
+        gameEngine = globalContext.getGameEngine();
         monsterQueueObservable = gameEngine.getMonsterQueueObservable();
         monsterQueueObservable.addObserver(this);
         monsterQueue = monsterQueueObservable.getMonsterQueue();
+
+        pokemonListView = (ListView) findViewById(R.id.pokemon_queue_listview);
+        updateListView();
     }
 
     @Override
     public void update(Observable observable, Object o) {
+        monsterQueue = monsterQueueObservable.getMonsterQueue();
+        updateListView();
+    }
 
+    private void updateListView() {
+        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(this, R.layout.list_pokemon_queue, monsterQueue);
+        pokemonListView.setAdapter(adapter);
+    }
+
+    public void step(View view) {
+        gameEngine.stepSensed();
     }
 }

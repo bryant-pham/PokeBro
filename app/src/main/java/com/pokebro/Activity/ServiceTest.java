@@ -25,4 +25,9 @@ public class ServiceTest extends Activity {
     public void stopService(View view) {
         stopService(new Intent(getBaseContext(), StepSensorService.class));
     }
+
+    public void next(View view) {
+        Intent intent = new Intent(this, PokemonQueueActivity.class);
+        startActivity(intent);
+    }
 }
