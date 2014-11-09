@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.Toast;
 
-import com.pokebro.GameEngine.GameEngine;
+import com.bpham.gameengine.GameEngine.GameEngine;
 
 /**
  * Created by Bryant on 9/17/2014.
@@ -19,10 +19,10 @@ public class StepSensor implements SensorEventListener {
     private GameEngine gameEngine;
 
 
-    public StepSensor(Context context, SensorManager sensorManager) {
+    public StepSensor(Context context, SensorManager sensorManager, GameEngine gameEngine) {
         this.context = context;
         this.sensorManager = sensorManager;
-        //this.gameEngine = gameEngine;
+        this.gameEngine = gameEngine;
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
     }
 
@@ -36,8 +36,8 @@ public class StepSensor implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Toast.makeText(context, "Step Counter: YEAH", Toast.LENGTH_SHORT).show();
-        //gameEngine.stepSensed();
+        //Toast.makeText(context, "Step Counter: YEAH", Toast.LENGTH_SHORT).show();
+        gameEngine.stepSensed();
     }
 
     @Override
