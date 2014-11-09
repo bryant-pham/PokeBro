@@ -10,6 +10,8 @@ import com.bpham.gameengine.GameEngine.RandomMonsterFactory;
 import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.bpham.gameengine.Model.RandomEncounter;
+import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.pokebro.Repository.PokemonDetailRepository;
 
 import java.util.Random;
 
@@ -23,8 +25,9 @@ public class GlobalContext extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 10, 15, 1);
-        RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random());
+        RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 1, 1, 1);
+        MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
+        RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random(), monsterDetailRepository);
         MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable();
         gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable);
     }
