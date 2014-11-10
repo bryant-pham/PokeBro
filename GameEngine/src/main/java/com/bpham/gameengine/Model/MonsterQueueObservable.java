@@ -24,6 +24,11 @@ public class MonsterQueueObservable extends Observable {
         triggerObservers();
     }
 
+    public void removeMonster(int position) {
+        monsterQueue.remove(position);
+        triggerObservers();
+    }
+
     private void triggerObservers() {
         setChanged();
         notifyObservers();
