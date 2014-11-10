@@ -1,6 +1,7 @@
 package com.bpham.gameengine.GameEngine;
 
 import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.Model.MonsterQueueObservable;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,12 +16,13 @@ public class PokemonGameEngineTest {
 
     @Mock private RandomMonsterFactory monsterFactoryMock;
     @Mock private RandomEncounterManager encounterManagerMock;
+    @Mock private MonsterQueueObservable observableQueue;
     private GameEngine pokemonGameEngine;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock);
+        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock, observableQueue);
     }
 
     @After
