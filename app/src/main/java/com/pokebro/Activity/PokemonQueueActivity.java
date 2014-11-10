@@ -37,6 +37,24 @@ public class PokemonQueueActivity extends Activity implements Observer {
 
         pokemonListView = (ListView) findViewById(R.id.pokemon_queue_listview);
         updateListView();
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                    pokemonListView,
+                    new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                        @Override
+                        public boolean canDismiss(int position) {
+                            return true;
+                        }
+
+                        @Override
+                        public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                            for(int position: reverseSortedPositions)
+                                monsterQueueObservable.removeMonster(position);
+                        }
+                    }
+                );
+        pokemonListView.setOnTouchListener(touchListener);
+        pokemonListView.setOnScrollListener(touchListener.makeScrollListener());
     }
 
     @Override
