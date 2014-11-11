@@ -45,5 +45,7 @@ public class RandomPokemonFactoryTest {
         Monster returnedMonster = randomPokemonFactory.createRandomMonster();
 
         assertThat(returnedMonster, instanceOf(Monster.class));
+        assertNotNull(returnedMonster.getName());
+        assertNotNull(returnedMonster.getImageResource());
     }
 }

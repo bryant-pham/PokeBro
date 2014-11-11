@@ -38,6 +38,7 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
+        verify(observableQueue, times(1)).addMonster(mockMonster);
         verify(encounterManagerMock, times(1)).resetCounter();
     }
 
@@ -48,6 +49,7 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
+        verify(observableQueue, times(0)).addMonster(mockMonster);
         verify(encounterManagerMock, times(0)).resetCounter();
     }
 }
