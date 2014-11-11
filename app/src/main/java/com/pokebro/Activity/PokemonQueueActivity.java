@@ -48,8 +48,17 @@ public class PokemonQueueActivity extends Activity implements Observer {
 
                         @Override
                         public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                            Toast.makeText(getBaseContext(), "Pokemon dismissed", Toast.LENGTH_SHORT).show();
                             for(int position: reverseSortedPositions)
                                 monsterQueueObservable.removeMonster(position);
+                        }
+
+                        @Override
+                        public void onSave(ListView listView, int[] reverseSortedPositions) {
+                            Toast.makeText(getBaseContext(), "Pokemon saved", Toast.LENGTH_SHORT).show();
+                            for(int position: reverseSortedPositions)
+                                monsterQueueObservable.removeMonster(position);
+                                // TODO: Insert save Pokemon call here
                         }
                     }
                 );
