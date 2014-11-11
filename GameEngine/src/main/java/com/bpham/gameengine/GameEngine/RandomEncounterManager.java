@@ -1,4 +1,4 @@
-package com.pokebro.GameEngine;
+package com.bpham.gameengine.GameEngine;
 
 /**
  * Created by Bryant on 8/17/2014.

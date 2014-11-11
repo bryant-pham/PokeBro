@@ -1,6 +1,6 @@
-package com.pokebro.GameEngine;
+package com.bpham.gameengine.GameEngine;
 
-import com.pokebro.Model.Monster;
+import com.bpham.gameengine.Model.Monster;
 
 /**
  * Created by Bryant on 10/4/2014.

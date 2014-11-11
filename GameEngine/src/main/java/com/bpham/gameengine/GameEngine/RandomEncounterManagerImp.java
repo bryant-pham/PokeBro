@@ -1,6 +1,6 @@
-package com.pokebro.GameEngine;
+package com.bpham.gameengine.GameEngine;
 
-import com.pokebro.Model.RandomEncounter;
+import com.bpham.gameengine.Model.RandomEncounter;
 
 import java.util.Random;
 

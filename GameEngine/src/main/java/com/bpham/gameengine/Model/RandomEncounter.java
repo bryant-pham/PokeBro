@@ -1,4 +1,4 @@
-package com.pokebro.Model;
+package com.bpham.gameengine.Model;
 
 /**
  * Created by Bryant on 8/22/2014.

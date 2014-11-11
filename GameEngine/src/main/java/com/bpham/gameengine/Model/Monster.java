@@ -1,4 +1,4 @@
-package com.pokebro.Model;
+package com.bpham.gameengine.Model;
 
 /**
  * Created by Bryant on 8/17/2014.
@@ -7,9 +7,9 @@ public class Monster {
     private String name;
     private int imageResource;
 
-    public Monster(String name, int image) {
+    public Monster(String name, int imageResource) {
         this.name = name;
-        this.imageResource = image;
+        this.imageResource = imageResource;
     }
 
     public String getName() {

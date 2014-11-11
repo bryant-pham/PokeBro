@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.pokebro.Application.GlobalContext;
-import com.pokebro.GameEngine.GameEngine;
+import com.bpham.gameengine.GameEngine.GameEngine;
 import com.pokebro.R;
 import com.pokebro.Input.StepSensor;
 
@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements
 
         GlobalContext globalContext = (GlobalContext) getApplicationContext();
         GameEngine gameEngine = globalContext.getGameEngine();
-        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), gameEngine);
+        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE));
     }
 
     @Override
@@ -113,9 +113,10 @@ public class MapsActivity extends FragmentActivity implements
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mapMarker.setPosition(latLng);
 
-        // Centers camera on avatar if distance between current and last location is > ~0.25 miles - used for initial GPS inaccuracies
-        if(lastLocation.distanceTo(location) > 400)
+        // Centers camera on avatar if distance between current and last location is > ~0.125 miles - used for initial GPS inaccuracies
+        if(lastLocation.distanceTo(location) > 100) {
             map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
     }
 
     @Override
