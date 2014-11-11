@@ -167,7 +167,6 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
         pokemonTable.put("dragonite", R.drawable.dragonite);
         pokemonTable.put("mewtwo", R.drawable.mewtwo);
         pokemonTable.put("mew", R.drawable.mew);
-
     }
 
     private static final ArrayList<String> pokemonNames = Collections.list(pokemonTable.keys());

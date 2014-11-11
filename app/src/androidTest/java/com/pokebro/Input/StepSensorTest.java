@@ -6,6 +6,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.test.AndroidTestCase;
 
+import com.pokebro.GameEngine.GameEngine;
+import com.pokebro.GameEngine.PokemonGameEngine;
+
 import org.mockito.Mockito;
 
 /**
@@ -14,6 +17,7 @@ import org.mockito.Mockito;
 public class StepSensorTest extends AndroidTestCase {
 
     private SensorManager sensorManagerMock;
+    private GameEngine gameEngineMock;
 
     private Context context;
     private StepSensor stepSensor;
@@ -24,9 +28,10 @@ public class StepSensorTest extends AndroidTestCase {
         System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
 
         sensorManagerMock = Mockito.mock(SensorManager.class);
+        gameEngineMock = Mockito.mock(PokemonGameEngine.class);
 
         context = getContext();
-        stepSensor = new StepSensor(context, sensorManagerMock);
+        stepSensor = new StepSensor(context, sensorManagerMock, gameEngineMock);
     }
 
     public void testStartSensor(){
@@ -48,12 +53,10 @@ public class StepSensorTest extends AndroidTestCase {
     }
 
     public void testOnSensorChangedOnEncounter() {
-        //Arrange
-
         //Act
         stepSensor.onSensorChanged(Mockito.mock(SensorEvent.class));
 
         //Assert
-
+        Mockito.verify(gameEngineMock, Mockito.times(1)).stepSensed();
     }
 }
