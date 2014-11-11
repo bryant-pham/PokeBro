@@ -1,19 +1,16 @@
-package com.pokebro.GameEngine;
+package com.pokebro.Repository;
 
-import com.pokebro.Model.Monster;
+import java.util.Hashtable;
+
+import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.pokebro.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.Random;
-
 /**
- * Created by Bryant on 9/21/2014.
+ * Created by Bryant on 11/8/2014.
  */
-public class RandomPokemonFactory implements RandomMonsterFactory {
+public class PokemonDetailRepository implements MonsterDetailRepository {
+
     private static final Hashtable<String, Integer> pokemonTable = new Hashtable();
-    private Random randomNumberGenerator;
 
     static {
         pokemonTable.put("bulbasaur", R.drawable.bulbasaur);
@@ -169,25 +166,8 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
         pokemonTable.put("mew", R.drawable.mew);
     }
 
-    private static final ArrayList<String> pokemonNames = Collections.list(pokemonTable.keys());
-
-    public RandomPokemonFactory(Random randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
-    }
-
-    private int generateRandomNumber() {
-        int minCounterValue = 0;
-        int maxCounterValue = pokemonNames.size() - 1;
-        return randomNumberGenerator.nextInt((maxCounterValue - minCounterValue) + 1) + minCounterValue;
-    }
-
     @Override
-    public Monster createRandomMonster() {
-        String pokemonName = pokemonNames.get(generateRandomNumber());
-        int drawableResource = pokemonTable.get(pokemonName);
-
-        Monster pokemon = new Monster(pokemonName, drawableResource);
-
-        return pokemon;
+    public Hashtable<String, Integer> getMonsterHashtable() {
+        return pokemonTable;
     }
 }

@@ -5,8 +5,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.widget.Toast;
 
-import com.pokebro.GameEngine.GameEngine;
+import com.bpham.gameengine.GameEngine.GameEngine;
 
 /**
  * Created by Bryant on 9/17/2014.
@@ -35,7 +36,7 @@ public class StepSensor implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        //Toast.makeText(context, "Step Counter: " + randomEncounterManager.getCounter(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Step Counter: YEAH", Toast.LENGTH_SHORT).show();
         gameEngine.stepSensed();
     }
 

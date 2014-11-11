@@ -5,10 +5,11 @@ package com.bpham.gameengine.Model;
  */
 public class Monster {
     private String name;
-    //private int imageResource;
+    private int imageResource;
 
-    public Monster(String name) {
+    public Monster(String name, int imageResource) {
         this.name = name;
+        this.imageResource = imageResource;
     }
 
     public String getName() {
@@ -19,11 +20,11 @@ public class Monster {
         this.name = name;
     }
 
-//    public int getImageResource() {
-//        return imageResource;
-//    }
-//
-//    public void setImageResource(int image) {
-//        this.imageResource = image;
-//    }
+    public int getImageResource() {
+        return imageResource;
+    }
+
+    public void setImageResource(int image) {
+        this.imageResource = image;
+    }
 }

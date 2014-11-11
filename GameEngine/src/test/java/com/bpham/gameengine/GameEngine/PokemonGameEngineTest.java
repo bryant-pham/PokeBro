@@ -1,6 +1,7 @@
 package com.bpham.gameengine.GameEngine;
 
 import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.Model.MonsterQueueObservable;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,13 +16,13 @@ public class PokemonGameEngineTest {
 
     @Mock private RandomMonsterFactory monsterFactoryMock;
     @Mock private RandomEncounterManager encounterManagerMock;
-    @Mock UserInterface uiMock;
+    @Mock private MonsterQueueObservable observableQueue;
     private GameEngine pokemonGameEngine;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pokemonGameEngine = new PokemonGameEngine(uiMock, monsterFactoryMock, encounterManagerMock);
+        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock, observableQueue);
     }
 
     @After
@@ -37,7 +38,7 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
-        verify(uiMock, times(1)).startMonsterActivity(mockMonster);
+        verify(observableQueue, times(1)).addMonster(mockMonster);
         verify(encounterManagerMock, times(1)).resetCounter();
     }
 
@@ -48,7 +49,7 @@ public class PokemonGameEngineTest {
 
         pokemonGameEngine.stepSensed();
 
-        verify(uiMock, times(0)).startMonsterActivity(mockMonster);
+        verify(observableQueue, times(0)).addMonster(mockMonster);
         verify(encounterManagerMock, times(0)).resetCounter();
     }
 }
