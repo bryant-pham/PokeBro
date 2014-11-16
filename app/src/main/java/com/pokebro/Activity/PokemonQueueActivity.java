@@ -10,7 +10,7 @@ import com.bpham.gameengine.GameEngine.GameEngine;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.Adapter.PokemonQueueArrayAdapter;
-import com.pokebro.Application.GlobalContext;
+import com.pokebro.Application.GameEngineSingleton;
 import com.pokebro.R;
 
 import java.util.List;
@@ -29,8 +29,8 @@ public class PokemonQueueActivity extends Activity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_queue);
 
-        GlobalContext globalContext = (GlobalContext) getApplicationContext();
-        gameEngine = globalContext.getGameEngine();
+        gameEngine = GameEngineSingleton.getInstance(this).getGameEngine();
+
         monsterQueueObservable = gameEngine.getMonsterQueueObservable();
         monsterQueueObservable.addObserver(this);
         monsterQueue = monsterQueueObservable.getMonsterQueue();

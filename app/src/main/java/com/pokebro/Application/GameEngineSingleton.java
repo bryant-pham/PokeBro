@@ -1,6 +1,6 @@
 package com.pokebro.Application;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.bpham.gameengine.GameEngine.GameEngine;
 import com.bpham.gameengine.GameEngine.PokemonGameEngine;
@@ -16,23 +16,29 @@ import com.pokebro.Repository.PokemonDetailRepository;
 import java.util.Random;
 
 /**
- * Created by Bryant on 10/5/2014.
+ * Created by Bryant on 11/15/2014.
  */
-public class GlobalContext extends Application {
+public class GameEngineSingleton {
+    private static GameEngineSingleton instance;
+    private GameEngine gameEngine;
+    private Context context;
 
-    private static GameEngine gameEngine;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 1, 1, 1);
+    private GameEngineSingleton(Context context) {
+        this.context = context;
+        RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 1, 1, 6);
         MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
         RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random(), monsterDetailRepository);
         MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable();
         gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable);
     }
 
-    public GameEngine getGameEngine() {
+    public static GameEngineSingleton getInstance(Context context) {
+        if(instance == null)
+            instance = new GameEngineSingleton(context);
+        return instance;
+    }
+
+    public GameEngine getGameEngine(){
         return gameEngine;
     }
 }
