@@ -1,4 +1,4 @@
-package com.pokebro.Application;
+package com.pokebro.GameEngine;
 
 import android.content.Context;
 
@@ -8,11 +8,14 @@ import com.bpham.gameengine.GameEngine.RandomEncounterManager;
 import com.bpham.gameengine.GameEngine.RandomEncounterManagerImp;
 import com.bpham.gameengine.GameEngine.RandomMonsterFactory;
 import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
+import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.bpham.gameengine.Model.RandomEncounter;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.pokebro.Repository.PokemonDetailRepository;
+import com.pokebro.Utility.SharedPreferencesUtil;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -21,14 +24,13 @@ import java.util.Random;
 public class GameEngineSingleton {
     private static GameEngineSingleton instance;
     private GameEngine gameEngine;
-    private Context context;
 
     private GameEngineSingleton(Context context) {
-        this.context = context;
+        List<Monster> pokemonList = SharedPreferencesUtil.getInstance(context).getPokemonList();
         RandomEncounterManager randomEncounterManager = new RandomEncounterManagerImp(new Random(), new RandomEncounter(), 1, 1, 6);
         MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
         RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random(), monsterDetailRepository);
-        MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable();
+        MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable(pokemonList);
         gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable);
     }
 
