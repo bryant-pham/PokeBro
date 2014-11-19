@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bpham.gameengine.GameEngine.GameEngine;
+import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.Adapter.PokemonQueueArrayAdapter;

@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.pokebro.Utility.MonsterQueueCacher;
+import com.pokebro.Adapter.MonsterQueueCacher;
 
 /**
  * Created by Bryant on 11/16/2014.

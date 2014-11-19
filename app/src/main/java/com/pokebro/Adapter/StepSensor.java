@@ -1,13 +1,12 @@
-package com.pokebro.Input;
+package com.pokebro.Adapter;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.widget.Toast;
 
-import com.bpham.gameengine.GameEngine.GameEngine;
+import com.bpham.gameengine.Port.GameEngine;
 
 /**
  * Created by Bryant on 9/17/2014.

@@ -1,4 +1,4 @@
-package com.pokebro.Utility;
+package com.pokebro.Repository;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,22 +14,22 @@ import java.util.List;
 /**
  * Created by Bryant on 11/16/2014.
  */
-public class SharedPreferencesUtil {
+public class SharedPreferencesRepository {
 
-    private static SharedPreferencesUtil util;
+    private static SharedPreferencesRepository util;
     private final static String APPLICATION_TAG = "com.pokebro";
     private final static String LIST_TAG = "pokemon_list";
     private static SharedPreferences pref;
     private static Gson gson;
 
-    private SharedPreferencesUtil(Context context) {
+    private SharedPreferencesRepository(Context context) {
         pref = context.getSharedPreferences(APPLICATION_TAG, Context.MODE_PRIVATE);
         gson = new GsonBuilder().create();
     }
 
-    public static SharedPreferencesUtil getInstance(Context context) {
+    public static SharedPreferencesRepository getInstance(Context context) {
         if(util == null)
-            util = new SharedPreferencesUtil(context);
+            util = new SharedPreferencesRepository(context);
         return util;
     }
 

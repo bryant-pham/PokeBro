@@ -1,10 +1,11 @@
-package com.pokebro.Utility;
+package com.pokebro.Adapter;
 
 import android.content.Context;
 
-import com.bpham.gameengine.GameEngine.GameEngine;
+import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.GameEngine.GameEngineSingleton;
+import com.pokebro.Repository.SharedPreferencesRepository;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -27,6 +28,6 @@ public class MonsterQueueCacher implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        SharedPreferencesUtil.getInstance(context).savePokemonList(queue.getMonsterQueue());
+        SharedPreferencesRepository.getInstance(context).savePokemonList(queue.getMonsterQueue());
     }
 }

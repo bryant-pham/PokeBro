@@ -7,7 +7,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import com.pokebro.GameEngine.GameEngineSingleton;
-import com.pokebro.Input.StepSensor;
+import com.pokebro.Adapter.StepSensor;
 
 public class StepSensorService extends Service {
 
