@@ -9,14 +9,14 @@ import java.util.Observable;
  */
 public class MonsterQueueObservable extends Observable {
 
-    private List<Monster> monsterQueue = new ArrayList<Monster>();
+    private List<Monster> monsterQueue;
+
+    public MonsterQueueObservable(List<Monster> monsterQueue) {
+        this.monsterQueue = monsterQueue;
+    }
 
     public List<Monster> getMonsterQueue() {
         return monsterQueue;
-    }
-
-    public void saveMonsterQueue(List<Monster> monsterQueue) {
-        this.monsterQueue = monsterQueue;
     }
 
     public void addMonster(Monster monster) {

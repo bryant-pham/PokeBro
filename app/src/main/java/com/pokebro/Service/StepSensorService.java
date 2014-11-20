@@ -1,4 +1,4 @@
-package com.pokebro.Input;
+package com.pokebro.Service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.bpham.gameengine.GameEngine.GameEngine;
-import com.pokebro.Application.GlobalContext;
+import com.pokebro.GameEngine.GameEngineSingleton;
+import com.pokebro.Adapter.StepSensor;
 
 public class StepSensorService extends Service {
 
@@ -18,16 +18,13 @@ public class StepSensorService extends Service {
 
     @Override
     public void onCreate() {
-        GlobalContext globalContext = (GlobalContext) getApplicationContext();
-        GameEngine gameEngine = globalContext.getGameEngine();
-        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), gameEngine);
+        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), GameEngineSingleton.getInstance(this).getGameEngine());
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Let it continue running until it is stopped.
         stepSensor.startSensor();
-        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Pedometer Started", Toast.LENGTH_LONG).show();
         return START_STICKY;
     }
 

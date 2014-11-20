@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pokebro.Adapter.MonsterParcelable;
-import com.pokebro.Model.Monster;
+import com.bpham.gameengine.Model.Monster;
 import com.pokebro.R;
-import com.pokebro.GameEngine.RandomPokemonFactory;
+import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
 import com.pokebro.Utility.BitmapResizeUtil;
 
 import java.util.Random;

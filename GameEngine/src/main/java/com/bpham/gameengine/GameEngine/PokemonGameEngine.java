@@ -2,6 +2,9 @@ package com.bpham.gameengine.GameEngine;
 
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
+import com.bpham.gameengine.Port.GameEngine;
+import com.bpham.gameengine.Port.RandomEncounterManager;
+import com.bpham.gameengine.Port.RandomMonsterFactory;
 
 /**
  * Created by Bryant on 10/4/2014.

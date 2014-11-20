@@ -2,6 +2,7 @@ package com.bpham.gameengine.GameEngine;
 
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.Port.RandomMonsterFactory;
 
 import org.junit.After;
 import org.junit.Before;

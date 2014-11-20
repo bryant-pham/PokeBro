@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.test.AndroidTestCase;
 
+import com.pokebro.Adapter.StepSensor;
 import com.pokebro.GameEngine.GameEngine;
 import com.pokebro.GameEngine.PokemonGameEngine;
 

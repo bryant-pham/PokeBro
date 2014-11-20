@@ -2,6 +2,9 @@ package com.bpham.gameengine.GameEngine;
 
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
+import com.bpham.gameengine.Port.GameEngine;
+import com.bpham.gameengine.Port.RandomEncounterManager;
+import com.bpham.gameengine.Port.RandomMonsterFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,8 +12,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
 
 public class PokemonGameEngineTest {
 

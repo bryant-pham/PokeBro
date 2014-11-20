@@ -1,23 +1,26 @@
 package com.pokebro.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bpham.gameengine.GameEngine.GameEngine;
+import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.Adapter.PokemonQueueArrayAdapter;
-import com.pokebro.Application.GlobalContext;
+import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
+import com.pokebro.Service.MonsterQueueCacheService;
+import com.pokebro.Service.StepSensorService;
 
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PokemonQueueActivity extends Activity implements Observer {
+public class MonsterQueueActivity extends Activity implements Observer {
 
     private MonsterQueueObservable monsterQueueObservable;
     private List<Monster> monsterQueue;
@@ -29,8 +32,11 @@ public class PokemonQueueActivity extends Activity implements Observer {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_queue);
 
-        GlobalContext globalContext = (GlobalContext) getApplicationContext();
-        gameEngine = globalContext.getGameEngine();
+        startService(new Intent(this, StepSensorService.class));
+        startService(new Intent(this, MonsterQueueCacheService.class));
+
+        gameEngine = GameEngineSingleton.getInstance(this).getGameEngine();
+
         monsterQueueObservable = gameEngine.getMonsterQueueObservable();
         monsterQueueObservable.addObserver(this);
         monsterQueue = monsterQueueObservable.getMonsterQueue();
