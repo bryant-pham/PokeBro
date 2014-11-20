@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.GameEngine.PokemonGameEngine;
+import com.bpham.gameengine.Port.MonsterRepository;
 import com.bpham.gameengine.Port.RandomEncounterManager;
 import com.bpham.gameengine.GameEngine.RandomEncounterManagerImp;
 import com.bpham.gameengine.Port.RandomMonsterFactory;
@@ -12,6 +13,8 @@ import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.bpham.gameengine.Model.RandomEncounter;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.pokebro.Repository.CaughtPokemonDbHelper;
+import com.pokebro.Repository.MonsterRepositorySQLite;
 import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Repository.SharedPreferencesRepository;
 
@@ -31,7 +34,8 @@ public class GameEngineSingleton {
         MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
         RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random(), monsterDetailRepository);
         MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable(pokemonList);
-        gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable);
+        MonsterRepository repository = new MonsterRepositorySQLite(new CaughtPokemonDbHelper(context));
+        gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable, repository);
     }
 
     public static GameEngineSingleton getInstance(Context context) {

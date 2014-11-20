@@ -1,5 +1,6 @@
 package com.bpham.gameengine.Port;
 
+import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 
 /**
@@ -8,4 +9,5 @@ import com.bpham.gameengine.Model.MonsterQueueObservable;
 public interface GameEngine {
     public void stepSensed();
     public MonsterQueueObservable getMonsterQueueObservable();
+    public void saveMonster(Monster monster);
 }

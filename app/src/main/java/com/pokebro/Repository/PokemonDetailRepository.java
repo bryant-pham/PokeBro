@@ -8,7 +8,7 @@ import com.pokebro.R;
 /**
  * Created by Bryant on 11/8/2014.
  */
-public class PokemonDetailRepository implements MonsterDetailRepository {
+public final class PokemonDetailRepository implements MonsterDetailRepository {
 
     private static final Hashtable<String, Integer> pokemonTable = new Hashtable();
 
