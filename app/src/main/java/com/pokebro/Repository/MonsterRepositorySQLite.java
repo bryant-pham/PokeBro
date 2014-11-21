@@ -21,12 +21,9 @@ public class MonsterRepositorySQLite implements MonsterRepository {
     @Override
     public void saveMonster(Monster monster) {
         ContentValues values = new ContentValues();
-        values.put(CaughtPokemonTableContract.CaughtPokemonTable.POKEMON_NAME, monster.getName());
-        values.put(CaughtPokemonTableContract.CaughtPokemonTable.IMAGE_RESOURCE, monster.getImageResource());
-        db.insert(
-                CaughtPokemonTableContract.CaughtPokemonTable.TABLE_NAME,
-                null,
-                values);
+        values.put(CaughtPokemonTable.POKEMON_NAME, monster.getName());
+        values.put(CaughtPokemonTable.IMAGE_RESOURCE, monster.getImageResource());
+        db.insert(CaughtPokemonTable.TABLE_NAME, null, values);
     }
 
 

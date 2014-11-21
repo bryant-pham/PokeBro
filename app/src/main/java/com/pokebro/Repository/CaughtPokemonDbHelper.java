@@ -18,12 +18,12 @@ public class CaughtPokemonDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CaughtPokemonTableContract.CREATE_TABLE);
+        db.execSQL(CaughtPokemonTable.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
-        db.execSQL(CaughtPokemonTableContract.DROP_TABLE);
+        db.execSQL(CaughtPokemonTable.DROP_TABLE);
         onCreate(db);
     }
 }
