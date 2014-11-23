@@ -2,7 +2,6 @@ package com.pokebro.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -17,7 +16,6 @@ import com.pokebro.R;
 import com.pokebro.Service.MonsterQueueCacheService;
 import com.pokebro.Service.StepSensorService;
 
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -76,7 +74,7 @@ public class MonsterQueueActivity extends Activity implements Observer {
     }
 
     private void updateListView() {
-        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(this, R.layout.list_pokemon_queue, monsterQueueObservable.getMonsterQueue());
+        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(this, R.layout.listview_pokemon_queue, monsterQueueObservable.getMonsterQueue());
         pokemonListView.setAdapter(adapter);
     }
 
