@@ -19,26 +19,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.pokebro.Activity.MapsActivity"
-            android:keepScreenOn="true"
-            android:label="@string/title_activity_maps" >
-        </activity>
-        <activity
             android:name="com.pokebro.Activity.PokemonActivity"
             android:label="@string/title_activity_pokemon" >
         </activity>
         <activity
-            android:name="com.pokebro.Activity.ServiceTest"
-            android:label="@string/title_activity_service_test" >
-
-        </activity>
-        <activity
-            android:name=".Activity.MonsterQueueActivity"
+            android:name="com.pokebro.Activity.MonsterQueueActivity"
             android:label="@string/title_activity_pokemon_queue" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <meta-data
@@ -49,15 +36,24 @@
             android:value="@string/google_maps_key" />
 
         <service
-            android:name=".Service.StepSensorService"
+            android:name="com.pokebro.Service.StepSensorService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
         </service>
         <service
-            android:name=".Service.MonsterQueueCacheService"
+            android:name="com.pokebro.Service.MonsterQueueCacheService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
         </service>
+
+        <activity
+            android:name="com.pokebro.Activity.MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
