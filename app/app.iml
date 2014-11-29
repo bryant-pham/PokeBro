@@ -87,9 +87,9 @@
     <orderEntry type="library" exported="" name="play-services-5.0.89" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="dexmaker-1.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="mockito-core-1.10.12" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="dexmaker-mockito-1.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="mockito-core-1.10.13" level="project" />
     <orderEntry type="module" module-name="GameEngine" exported="" />
   </component>
 </module>
