@@ -12,8 +12,7 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string-array name="nav_drawer_items_array">
-        <item>Create</item>
-        <item>Read</item>
-        <item>Help</item>
+        <item>Queue List</item>
+        <item>Caught List</item>
     </string-array>
 </resources>
