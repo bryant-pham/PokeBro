@@ -23,8 +23,8 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private String[] navdrawerItemTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
     private ActionBarDrawerToggle drawerToggle;
 
     @Override
@@ -33,22 +33,22 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         navdrawerItemTitles = getResources().getStringArray(R.array.nav_drawer_items_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.left_drawer);
 
         List<DrawerItem> drawerItemList = new ArrayList<DrawerItem>();
         drawerItemList.add(new DrawerItem(R.drawable.bulbasaur, "Queue List"));
         drawerItemList.add(new DrawerItem(R.drawable.squirtle, "Caught List"));
 
         DrawerItemArrayAdapter adapter = new DrawerItemArrayAdapter(this, R.layout.listview_nav_drawer_item_row, drawerItemList);
-        mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        drawerList.setAdapter(adapter);
+        drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // Set initial fragment
         selectItem(0);
 
-        drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.nav_drawer_open, R.string.nav_drawer_close);
-        mDrawerLayout.setDrawerListener(drawerToggle);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.nav_drawer_open, R.string.nav_drawer_close);
+        drawerLayout.setDrawerListener(drawerToggle);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
@@ -107,6 +107,6 @@ public class MainActivity extends Activity {
         }
 
         getActionBar().setTitle(navdrawerItemTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        drawerLayout.closeDrawer(drawerList);
     }
 }
