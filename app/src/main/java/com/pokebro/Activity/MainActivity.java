@@ -99,6 +99,9 @@ public class MainActivity extends Activity {
             case 0:
                 fragment = MonsterQueueFragment.newInstance();
                 break;
+            case 1:
+                fragment = CaughtListFragment.newInstance();
+                break;
         }
 
         if(fragment != null) {
