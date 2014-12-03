@@ -28,7 +28,7 @@ public class MonsterQueueActivity extends Activity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pokemon_queue);
+        setContentView(R.layout.fragment_pokemon_queue);
 
         startService(new Intent(this, StepSensorService.class));
         startService(new Intent(this, MonsterQueueCacheService.class));

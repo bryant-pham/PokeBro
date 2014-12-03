@@ -40,7 +40,7 @@ public class MonsterQueueFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_pokemon_queue, container, false);
+        View view = inflater.inflate(R.layout.fragment_pokemon_queue, container, false);
         pokemonListView = (ListView) view.findViewById(R.id.pokemon_queue_listview);
         updateListView();
         SwipeDismissListViewTouchListener touchListener =
