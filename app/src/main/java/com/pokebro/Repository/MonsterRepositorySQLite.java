@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.bpham.gameengine.Port.MonsterRepository;
 
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ import java.util.List;
 public class MonsterRepositorySQLite implements MonsterRepository {
 
     private SQLiteDatabase db;
+    private MonsterDetailRepository monsterDetailRepository;
 
-    public MonsterRepositorySQLite(SQLiteOpenHelper helper) {
+    public MonsterRepositorySQLite(SQLiteOpenHelper helper, MonsterDetailRepository monsterDetailRepository) {
         this.db = helper.getWritableDatabase();
+        this.monsterDetailRepository = monsterDetailRepository;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class MonsterRepositorySQLite implements MonsterRepository {
         if(results.moveToFirst())
             do {
                 String monsterName = results.getString(0);
-                int imageResource  = results.getInt(1);
+                int imageResource = monsterDetailRepository.getImageResourceByMonsterName(monsterName);
                 Monster monster = new Monster(monsterName, imageResource);
                 monsterList.add(monster);
             } while(results.moveToNext());
