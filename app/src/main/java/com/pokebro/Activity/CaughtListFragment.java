@@ -28,6 +28,7 @@ public class CaughtListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameEngine = GameEngineSingleton.getInstance(getActivity()).getGameEngine();
+        caughtMonsters = gameEngine.getCaughtMonsters();
     }
 
     @Override

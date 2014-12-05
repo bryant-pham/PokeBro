@@ -7,6 +7,8 @@ import com.bpham.gameengine.Port.MonsterRepository;
 import com.bpham.gameengine.Port.RandomEncounterManager;
 import com.bpham.gameengine.Port.RandomMonsterFactory;
 
+import java.util.List;
+
 /**
  * Created by Bryant on 10/4/2014.
  */
@@ -47,5 +49,10 @@ public class PokemonGameEngine implements GameEngine {
     @Override
     public void saveMonster(Monster monster) {
         repository.saveMonster(monster);
+    }
+
+    @Override
+    public List<Monster> getCaughtMonsters() {
+        return repository.getCaughtMonsterList();
     }
 }
