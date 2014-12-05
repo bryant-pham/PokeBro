@@ -34,7 +34,7 @@ public class GameEngineSingleton {
         MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
         RandomMonsterFactory randomMonsterFactory = new RandomPokemonFactory(new Random(), monsterDetailRepository);
         MonsterQueueObservable monsterQueueObservable = new MonsterQueueObservable(pokemonList);
-        MonsterRepository repository = new MonsterRepositorySQLite(new CaughtPokemonDbHelper(context));
+        MonsterRepository repository = new MonsterRepositorySQLite(new CaughtPokemonDbHelper(context), monsterDetailRepository);
         gameEngine = new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable, repository);
     }
 

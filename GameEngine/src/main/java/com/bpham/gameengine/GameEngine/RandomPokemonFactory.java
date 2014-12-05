@@ -7,6 +7,7 @@ import com.bpham.gameengine.Port.RandomMonsterFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -16,14 +17,12 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
 
     private Random randomNumberGenerator;
     private MonsterDetailRepository repository;
-    private Hashtable<String, Integer> pokemonHashtable;
-    private ArrayList<String> pokemonNames;
+    private List<String> pokemonNames;
 
     public RandomPokemonFactory(Random randomNumberGenerator, MonsterDetailRepository repository) {
         this.randomNumberGenerator = randomNumberGenerator;
         this.repository = repository;
-        pokemonHashtable = repository.getMonsterHashtable();
-        pokemonNames = Collections.list(pokemonHashtable.keys());
+        pokemonNames = repository.getListOfMonsterNames();
     }
 
     private int generateRandomNumber() {
@@ -35,7 +34,7 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
     @Override
     public Monster createRandomMonster() {
         String pokemonName = pokemonNames.get(generateRandomNumber());
-        int drawableResource = pokemonHashtable.get(pokemonName);
+        int drawableResource = repository.getImageResourceByMonsterName(pokemonName);
 
         Monster pokemon = new Monster(pokemonName, drawableResource);
 
