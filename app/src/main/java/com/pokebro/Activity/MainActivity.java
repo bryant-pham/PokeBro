@@ -3,6 +3,7 @@ package com.pokebro.Activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 //import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,8 @@ import android.widget.ListView;
 import com.pokebro.Adapter.DrawerItemArrayAdapter;
 import com.pokebro.Model.DrawerItem;
 import com.pokebro.R;
+import com.pokebro.Service.MonsterQueueCacheService;
+import com.pokebro.Service.StepSensorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(this, StepSensorService.class));
+        startService(new Intent(this, MonsterQueueCacheService.class));
 
         navdrawerItemTitles = getResources().getStringArray(R.array.nav_drawer_items_array);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
