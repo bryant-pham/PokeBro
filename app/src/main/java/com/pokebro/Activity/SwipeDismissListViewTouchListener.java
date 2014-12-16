@@ -280,7 +280,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                                 .setListener(new AnimatorListenerAdapter() {
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
-                                        performDismiss(downView, downPosition);
+                                        performSave(downView, downPosition);
                                     }
                                 });
                     else if(swipeAction == SwipeAction.SWIPE_LEFT)
@@ -291,7 +291,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                                 .setListener(new AnimatorListenerAdapter() {
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
-                                        performSave(downView, downPosition);
+                                        performDismiss(downView, downPosition);
                                     }
                                 });
                 } else {
