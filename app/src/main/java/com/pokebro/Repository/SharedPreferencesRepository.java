@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -14,35 +15,37 @@ import java.util.List;
 /**
  * Created by Bryant on 11/16/2014.
  */
-public class SharedPreferencesRepository {
+public class SharedPreferencesRepository implements MonsterQueueRepository {
 
-    private static SharedPreferencesRepository util;
     private final static String APPLICATION_TAG = "com.pokebro";
     private final static String LIST_TAG = "pokemon_list";
     private static SharedPreferences pref;
     private static Gson gson;
+    private MonsterDetailRepository monsterDetailRepository;
 
-    private SharedPreferencesRepository(Context context) {
+    public SharedPreferencesRepository(Context context, MonsterDetailRepository monsterDetailRepository) {
         pref = context.getSharedPreferences(APPLICATION_TAG, Context.MODE_PRIVATE);
         gson = new GsonBuilder().create();
+        this.monsterDetailRepository = monsterDetailRepository;
     }
 
-    public static SharedPreferencesRepository getInstance(Context context) {
-        if(util == null)
-            util = new SharedPreferencesRepository(context);
-        return util;
-    }
-
-    public void savePokemonList(List<Monster> pokemonList) {
-        String jsonString = gson.toJsonTree(pokemonList).getAsJsonArray().toString();
+    @Override
+    public void saveMonsterQueue(List<Monster> monsterList) {
+        String jsonString = gson.toJsonTree(monsterList).getAsJsonArray().toString();
         pref.edit().putString(LIST_TAG, jsonString).apply();
     }
 
-    public List<Monster> getPokemonList() {
+    @Override
+    public List<Monster> getMonsterQueue() {
         String jsonString = pref.getString(LIST_TAG, null);
         if(jsonString == null)
             return new ArrayList<Monster>();
         List<Monster> pokemonList = gson.fromJson(jsonString, new TypeToken<List<Monster>>(){}.getType());
+        for(int position = 0; position < pokemonList.size(); position++) {
+            Monster monster = pokemonList.get(position);
+            monster.setImageResource(monsterDetailRepository.getImageResourceByMonsterName(monster.getName()));
+            pokemonList.set(position, monster);
+        }
         return pokemonList;
     }
 }

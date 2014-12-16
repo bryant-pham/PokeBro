@@ -16,21 +16,19 @@ import com.pokebro.R;
 import com.pokebro.Service.MonsterQueueCacheService;
 import com.pokebro.Service.StepSensorService;
 
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 public class MonsterQueueActivity extends Activity implements Observer {
 
     private MonsterQueueObservable monsterQueueObservable;
-    private List<Monster> monsterQueue;
     private GameEngine gameEngine;
     private ListView pokemonListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pokemon_queue);
+        setContentView(R.layout.fragment_pokemon_queue);
 
         startService(new Intent(this, StepSensorService.class));
         startService(new Intent(this, MonsterQueueCacheService.class));
@@ -39,7 +37,6 @@ public class MonsterQueueActivity extends Activity implements Observer {
 
         monsterQueueObservable = gameEngine.getMonsterQueueObservable();
         monsterQueueObservable.addObserver(this);
-        monsterQueue = monsterQueueObservable.getMonsterQueue();
 
         pokemonListView = (ListView) findViewById(R.id.pokemon_queue_listview);
         updateListView();
@@ -56,15 +53,14 @@ public class MonsterQueueActivity extends Activity implements Observer {
                         public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                             Toast.makeText(getBaseContext(), "Pokemon dismissed", Toast.LENGTH_SHORT).show();
                             for(int position: reverseSortedPositions)
-                                monsterQueueObservable.removeMonster(position);
+                                removeMonsterFromQueue(position);
                         }
 
                         @Override
                         public void onSave(ListView listView, int[] reverseSortedPositions) {
                             Toast.makeText(getBaseContext(), "Pokemon saved", Toast.LENGTH_SHORT).show();
                             for(int position: reverseSortedPositions)
-                                monsterQueueObservable.removeMonster(position);
-                                // TODO: Insert save Pokemon call here
+                                saveMonster(position);
                         }
                     }
                 );
@@ -74,16 +70,30 @@ public class MonsterQueueActivity extends Activity implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        monsterQueue = monsterQueueObservable.getMonsterQueue();
         updateListView();
     }
 
     private void updateListView() {
-        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(this, R.layout.list_pokemon_queue, monsterQueue);
+        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(this, R.layout.listview_pokemon_queue, monsterQueueObservable.getMonsterQueue());
         pokemonListView.setAdapter(adapter);
+    }
+
+    private void saveMonster(int position) {
+        final Monster monster = monsterQueueObservable.getMonster(position);
+        new Thread(new Runnable(){
+            public void run() {
+                gameEngine.saveMonster(monster);
+            }
+        }).start();
+        removeMonsterFromQueue(position);
+    }
+
+    private void removeMonsterFromQueue(int position) {
+        monsterQueueObservable.removeMonster(position);
     }
 
     public void step(View view) {
         gameEngine.stepSensed();
     }
+
 }
