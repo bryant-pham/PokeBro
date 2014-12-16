@@ -1,11 +1,13 @@
 package com.pokebro.Activity;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +24,7 @@ import java.util.Observer;
 /**
  * Created by Bryant on 11/28/2014.
  */
-public class MonsterQueueFragment extends Fragment implements Observer {
+public class MonsterQueueFragment extends Fragment implements Observer, View.OnClickListener {
 
     private MonsterQueueObservable monsterQueueObservable;
     private GameEngine gameEngine;
@@ -69,6 +71,8 @@ public class MonsterQueueFragment extends Fragment implements Observer {
                 );
         pokemonListView.setOnTouchListener(touchListener);
         pokemonListView.setOnScrollListener(touchListener.makeScrollListener());
+        Button triggerStep = (Button) view.findViewById(R.id.trigger_step);
+        triggerStep.setOnClickListener(this);
         return view;
     }
 
@@ -101,7 +105,9 @@ public class MonsterQueueFragment extends Fragment implements Observer {
         monsterQueueObservable.removeMonster(position);
     }
 
-    public void step(View view) {
-        gameEngine.stepSensed();
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.trigger_step)
+            gameEngine.stepSensed();
     }
 }
