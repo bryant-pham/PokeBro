@@ -29,14 +29,13 @@ public class MonsterRepositorySQLite implements MonsterRepository {
     public void saveMonster(Monster monster) {
         ContentValues values = new ContentValues();
         values.put(CaughtPokemonTable.POKEMON_NAME, monster.getName());
-        values.put(CaughtPokemonTable.IMAGE_RESOURCE, monster.getImageResource());
         db.insert(CaughtPokemonTable.TABLE_NAME, null, values);
     }
 
     @Override
     public List<Monster> getCaughtMonsterList() {
         List<Monster> monsterList = new ArrayList<Monster>();
-        String[] columns = {CaughtPokemonTable.POKEMON_NAME, CaughtPokemonTable.IMAGE_RESOURCE};
+        String[] columns = {CaughtPokemonTable.POKEMON_NAME};
         Cursor results = db.query(true, CaughtPokemonTable.TABLE_NAME, columns, null, null, null, null, CaughtPokemonTable.POKEMON_NAME, null);
         if(results.moveToFirst())
             do {
