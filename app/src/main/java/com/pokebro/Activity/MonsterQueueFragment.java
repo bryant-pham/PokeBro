@@ -84,8 +84,7 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
     }
 
     public static MonsterQueueFragment newInstance() {
-        MonsterQueueFragment fragment = new MonsterQueueFragment();
-        return fragment;
+        return new MonsterQueueFragment();
     }
 
     @Override
