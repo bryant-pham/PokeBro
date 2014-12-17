@@ -29,6 +29,7 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
     private MonsterQueueObservable monsterQueueObservable;
     private GameEngine gameEngine;
     private ListView pokemonListView;
+    private PokemonQueueArrayAdapter arrayAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pokemon_queue, container, false);
         pokemonListView = (ListView) view.findViewById(R.id.pokemon_queue_listview);
-        updateListView();
+        arrayAdapter = new PokemonQueueArrayAdapter(getActivity(), R.layout.listview_pokemon_queue, monsterQueueObservable.getMonsterQueue());
+        pokemonListView.setAdapter(arrayAdapter);
+
         SwipeDismissListViewTouchListener touchListener =
                 new SwipeDismissListViewTouchListener(
                         pokemonListView,
@@ -69,10 +72,14 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
                             }
                         }
                 );
+
         pokemonListView.setOnTouchListener(touchListener);
         pokemonListView.setOnScrollListener(touchListener.makeScrollListener());
+
+        // TODO: Trigger step button - will be removed
         Button triggerStep = (Button) view.findViewById(R.id.trigger_step);
         triggerStep.setOnClickListener(this);
+
         return view;
     }
 
@@ -83,12 +90,7 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
 
     @Override
     public void update(Observable observable, Object o) {
-        updateListView();
-    }
-
-    private void updateListView() {
-        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(getActivity(), R.layout.listview_pokemon_queue, monsterQueueObservable.getMonsterQueue());
-        pokemonListView.setAdapter(adapter);
+        arrayAdapter.notifyDataSetChanged();
     }
 
     private void saveMonster(int position) {
@@ -103,6 +105,7 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
 
     private void removeMonsterFromQueue(int position) {
         monsterQueueObservable.removeMonster(position);
+        arrayAdapter.notifyDataSetChanged();
     }
 
     @Override
