@@ -15,6 +15,7 @@ import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
 import com.pokebro.Service.MonsterQueueCacheService;
 import com.pokebro.Service.StepSensorService;
+import com.pokebro.Utility.SwipeDismissListViewTouchListener;
 
 import java.util.Observable;
 import java.util.Observer;

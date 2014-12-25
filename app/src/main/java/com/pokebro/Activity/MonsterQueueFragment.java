@@ -1,7 +1,6 @@
 package com.pokebro.Activity;
 
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import com.bpham.gameengine.Port.GameEngine;
 import com.pokebro.Adapter.PokemonQueueArrayAdapter;
 import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
+import com.pokebro.Utility.SwipeDismissListViewTouchListener;
 
 import java.util.Observable;
 import java.util.Observer;

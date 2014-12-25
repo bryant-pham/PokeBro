@@ -1,4 +1,4 @@
-package com.pokebro.Activity;
+package com.pokebro.Utility;
 
 /*
  * Copyright 2013 Google Inc.
