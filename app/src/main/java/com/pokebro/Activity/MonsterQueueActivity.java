@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.pokebro.Adapter.PokemonQueueArrayAdapter;
+import com.pokebro.Utility.PokemonQueueArrayAdapter;
 import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
 import com.pokebro.Service.MonsterQueueCacheService;
