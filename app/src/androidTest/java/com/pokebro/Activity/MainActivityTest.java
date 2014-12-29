@@ -7,8 +7,17 @@ import android.widget.ListView;
 
 import com.pokebro.R;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
+import static android.support.test.espresso.assertion.ViewAssertions.*;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.contrib.DrawerActions.closeDrawer;
+import static android.support.test.espresso.contrib.DrawerActions.openDrawer;
+import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
+import static android.support.test.espresso.contrib.DrawerMatchers.isOpen;
+import static org.hamcrest.Matchers.not;
 /**
- * Created by BRYANT on 12/22/2014.
+ * Created by BRYANT on 12/27/2014.
  */
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
@@ -21,9 +30,9 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         super(MainActivity.class);
     }
 
-
     @Override
-    protected void setUp() {
+    public void setUp() throws Exception {
+        super.setUp();
         mainActivity = getActivity();
         drawerLayout = (DrawerLayout) mainActivity.findViewById(R.id.drawer_layout);
         contentFrame = (FrameLayout) mainActivity.findViewById(R.id.content_frame);
@@ -35,5 +44,16 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertNotNull("DrawerLayout is null", drawerLayout);
         assertNotNull("FrameLayout is null", contentFrame);
         assertNotNull("Drawer listview is null", drawerListView);
+    }
+
+    public void testNavDrawerShouldBeClosedOnActivityStart() {
+        onView(withId(R.id.drawer_layout)).check(matches(isClosed()));
+        onView(withId(R.id.left_drawer)).check(matches(not(isDisplayed())));
+    }
+
+    public void testNavDrawerShouldOpen() {
+        openDrawer(R.id.drawer_layout);
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+        onView(withId(R.id.left_drawer)).check(matches(isDisplayed()));
     }
 }
