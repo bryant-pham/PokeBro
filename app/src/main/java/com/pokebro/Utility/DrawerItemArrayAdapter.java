@@ -39,8 +39,8 @@ public class DrawerItemArrayAdapter extends ArrayAdapter<DrawerItem> {
             convertView = inflater.inflate(layoutResourceId, parent, false);
         }
 
-        ImageView imageViewIcon = (ImageView) convertView.findViewById(R.id.imageViewIcon);
-        TextView textViewName = (TextView) convertView.findViewById(R.id.textViewName);
+        ImageView imageViewIcon = (ImageView) convertView.findViewById(R.id.nav_drawer_item_image);
+        TextView textViewName = (TextView) convertView.findViewById(R.id.nav_drawer_item_text);
 
         DrawerItem folder = data.get(position);
 

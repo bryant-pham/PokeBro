@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewIcon"
+        android:id="@+id/nav_drawer_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,13 +13,12 @@
         android:paddingRight="10dp" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/nav_drawer_item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/imageViewIcon"
+        android:layout_toRightOf="@+id/nav_drawer_item_image"
         android:paddingRight="10dp"
-        android:text="Folder name here."
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="#ffffff" />
 
