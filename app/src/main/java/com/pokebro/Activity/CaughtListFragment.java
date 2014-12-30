@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Port.GameEngine;
+import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
 import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
@@ -23,12 +26,17 @@ public class CaughtListFragment extends Fragment {
     private GameEngine gameEngine;
     private ListView monsterListView;
     private List<Monster> caughtMonsters;
+    private int caughtMonsterCount;
+    private int totalMonsterCount;
+    private MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameEngine = GameEngineSingleton.getInstance(getActivity()).getGameEngine();
         caughtMonsters = gameEngine.getCaughtMonsters();
+        caughtMonsterCount = caughtMonsters.size();
+        totalMonsterCount = monsterDetailRepository.getTotalNumberOfMonsters();
     }
 
     @Override
@@ -36,6 +44,9 @@ public class CaughtListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_caught_pokemon, container, false);
         monsterListView = (ListView) view.findViewById(R.id.caught_pokemon_listview);
         setMonsterListView(caughtMonsters, monsterListView);
+        TextView monsterCounterTextView = (TextView) view.findViewById(R.id.caught_monster_count);
+        CharSequence counterDisplay = Integer.toString(caughtMonsterCount) + "/" + Integer.toString(totalMonsterCount);
+        monsterCounterTextView.setText(counterDisplay);
         return view;
     }
 
