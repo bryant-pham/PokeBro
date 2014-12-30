@@ -9,4 +9,5 @@ import java.util.List;
 public interface MonsterDetailRepository {
     public int getImageResourceByMonsterName(String monsterName);
     public List<String> getListOfMonsterNames();
+    public int getTotalNumberOfMonsters();
 }

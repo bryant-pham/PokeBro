@@ -178,4 +178,9 @@ public final class PokemonDetailRepository implements MonsterDetailRepository {
     public List<String> getListOfMonsterNames() {
         return Collections.list(pokemonTable.keys());
     }
+
+    @Override
+    public int getTotalNumberOfMonsters() {
+        return pokemonTable.size();
+    }
 }
