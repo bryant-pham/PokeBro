@@ -34,12 +34,13 @@ public class MonsterRepositorySQLite implements MonsterRepository {
 
     @Override
     public List<Monster> getCaughtMonsterList() {
-        List<Monster> monsterList = new ArrayList<Monster>();
+        int resultColumnIndex = 0;
+        List<Monster> monsterList = new ArrayList<>();
         String[] columns = {CaughtPokemonTable.POKEMON_NAME};
         Cursor results = db.query(true, CaughtPokemonTable.TABLE_NAME, columns, null, null, null, null, CaughtPokemonTable.POKEMON_NAME, null);
         if(results.moveToFirst())
             do {
-                String monsterName = results.getString(0);
+                String monsterName = results.getString(resultColumnIndex);
                 int imageResource = monsterDetailRepository.getImageResourceByMonsterName(monsterName);
                 Monster monster = new Monster(monsterName, imageResource);
                 monsterList.add(monster);
@@ -47,5 +48,15 @@ public class MonsterRepositorySQLite implements MonsterRepository {
         return monsterList;
     }
 
-
+    @Override
+    public int getCaughtMonsterCount() {
+        int caughtMonsterCount = 0;
+        int resultColumnIndex = 0;
+        final String query = "SELECT DISTINCT COUNT(*) FROM " + CaughtPokemonTable.TABLE_NAME;
+        Cursor result = db.rawQuery(query, null);
+        if(result.moveToFirst()) {
+            caughtMonsterCount = result.getInt(resultColumnIndex);
+        }
+        return caughtMonsterCount;
+    }
 }

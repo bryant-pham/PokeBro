@@ -10,4 +10,5 @@ import java.util.List;
 public interface MonsterRepository {
     public void saveMonster(Monster monster);
     public List<Monster> getCaughtMonsterList();
+    public int getCaughtMonsterCount();
 }
