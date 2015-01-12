@@ -32,7 +32,7 @@ public class RepositoryModule {
 
     @Provides
     @Singleton
-    public MonsterQueueRepository getSharePreferencesRepository(Context context, MonsterDetailRepository monsterDetailRepository) {
+    public MonsterQueueRepository getMonsterQueueRepository(Context context, MonsterDetailRepository monsterDetailRepository) {
         return new SharedPreferencesRepository(context, monsterDetailRepository);
     }
 
