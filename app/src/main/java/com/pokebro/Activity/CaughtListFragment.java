@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.pokebro.PokebroApplication;
 import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
 import com.pokebro.GameEngine.GameEngineSingleton;
@@ -18,22 +19,24 @@ import com.pokebro.R;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by Bryant on 12/2/2014.
  */
 public class CaughtListFragment extends Fragment {
 
-    private GameEngine gameEngine;
-    private ListView monsterListView;
-    private List<Monster> caughtMonsters;
-    private int caughtMonsterCount;
-    private int totalMonsterCount;
-    private MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
+    @Inject GameEngine gameEngine;
+    @Inject MonsterDetailRepository monsterDetailRepository;
+    ListView monsterListView;
+    List<Monster> caughtMonsters;
+    int caughtMonsterCount;
+    int totalMonsterCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gameEngine = GameEngineSingleton.getInstance(getActivity()).getGameEngine();
+        ((PokebroApplication) getActivity().getApplication()).inject(this);
         caughtMonsters = gameEngine.getCaughtMonsters();
         caughtMonsterCount = caughtMonsters.size();
         totalMonsterCount = monsterDetailRepository.getTotalNumberOfMonsters();
