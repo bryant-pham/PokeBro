@@ -8,12 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pokebro.Adapter.MonsterParcelable;
-import com.bpham.gameengine.Model.Monster;
 import com.pokebro.R;
-import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
 import com.pokebro.Utility.BitmapResizeUtil;
-
-import java.util.Random;
 
 public class PokemonActivity extends Activity {
     private ImageView pokemonView;

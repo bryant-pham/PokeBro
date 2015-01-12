@@ -12,9 +12,7 @@ import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.pokebro.PokebroApplication;
-import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
-import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
 
 import java.util.List;

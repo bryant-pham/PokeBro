@@ -15,7 +15,6 @@ import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.bpham.gameengine.Port.GameEngine;
 import com.pokebro.PokebroApplication;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
-import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.R;
 import com.pokebro.Utility.SwipeDismissListViewTouchListener;
 
