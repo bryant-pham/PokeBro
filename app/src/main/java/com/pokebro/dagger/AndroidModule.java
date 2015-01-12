@@ -1,8 +1,12 @@
 package com.pokebro.dagger;
 
 import android.content.Context;
+import android.hardware.SensorManager;
 
+import com.bpham.gameengine.Port.GameEngine;
+import com.pokebro.Adapter.StepSensor;
 import com.pokebro.PokebroApplication;
+import com.pokebro.Service.StepSensorService;
 
 import javax.inject.Singleton;
 
@@ -13,7 +17,11 @@ import dagger.Provides;
  * Created by BRYANT on 1/11/2015.
  */
 
-@Module(library = true)
+@Module(
+        injects = {StepSensorService.class},
+        library = true,
+        complete = false
+)
 public class AndroidModule {
     private PokebroApplication application;
 
@@ -25,5 +33,17 @@ public class AndroidModule {
     @Singleton
     public Context getApplicationContext() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    public SensorManager getSensorManager(Context context) {
+        return (SensorManager) context.getSystemService(context.SENSOR_SERVICE);
+    }
+
+    @Provides
+    @Singleton
+    public StepSensor getStepSensor(SensorManager sensorManager, GameEngine gameEngine) {
+        return new StepSensor(sensorManager, gameEngine);
     }
 }
