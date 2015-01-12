@@ -9,6 +9,7 @@ import com.pokebro.Repository.MonsterQueueRepository;
 import com.pokebro.Repository.MonsterRepositorySQLite;
 import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Repository.SharedPreferencesRepository;
+import com.pokebro.Service.MonsterQueueCacheService;
 
 import javax.inject.Singleton;
 
@@ -20,6 +21,7 @@ import dagger.Provides;
  */
 
 @Module(
+        injects = {MonsterQueueCacheService.class},
         library = true,
         complete = false
 )

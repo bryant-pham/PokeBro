@@ -1,12 +1,7 @@
 package com.pokebro.Adapter;
 
-import android.content.Context;
-
-import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.pokebro.GameEngine.GameEngineSingleton;
 import com.pokebro.Repository.MonsterQueueRepository;
-import com.pokebro.Repository.SharedPreferencesRepository;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -16,16 +11,12 @@ import java.util.Observer;
  */
 public class MonsterQueueCacher implements Observer {
 
-    private GameEngine gameEngine;
-    private MonsterQueueObservable queue;
-    private Context context;
-    private MonsterQueueRepository monsterQueueRepository;
+    MonsterQueueObservable queue;
+    MonsterQueueRepository monsterQueueRepository;
 
-    public MonsterQueueCacher(Context context, MonsterQueueRepository monsterQueueRepository) {
-        this.context = context;
+    public MonsterQueueCacher(MonsterQueueObservable queue, MonsterQueueRepository monsterQueueRepository) {
+        this.queue = queue;
         this.monsterQueueRepository = monsterQueueRepository;
-        gameEngine = GameEngineSingleton.getInstance(context).getGameEngine();
-        queue = gameEngine.getMonsterQueueObservable();
         queue.addObserver(this);
     }
 

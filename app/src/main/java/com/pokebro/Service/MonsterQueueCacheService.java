@@ -4,22 +4,28 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.Adapter.MonsterQueueCacher;
+import com.pokebro.PokebroApplication;
 import com.pokebro.Repository.MonsterQueueRepository;
-import com.pokebro.Repository.PokemonDetailRepository;
-import com.pokebro.Repository.SharedPreferencesRepository;
+
+import javax.inject.Inject;
 
 /**
  * Created by Bryant on 11/16/2014.
  */
 public class MonsterQueueCacheService extends Service {
 
+    @Inject MonsterQueueObservable monsterQueueObservable;
+    @Inject MonsterQueueRepository monsterQueueRepository;
+
+    public void onCreate() {
+        ((PokebroApplication) getApplication()).inject(this);
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        MonsterDetailRepository monsterDetailRepository = new PokemonDetailRepository();
-        MonsterQueueRepository monsterQueueRepository = new SharedPreferencesRepository(this, monsterDetailRepository);
-        new MonsterQueueCacher(this, monsterQueueRepository);
+        new MonsterQueueCacher(monsterQueueObservable, monsterQueueRepository);
         return START_STICKY;
     }
 

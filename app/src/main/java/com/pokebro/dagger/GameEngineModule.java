@@ -12,9 +12,8 @@ import com.bpham.gameengine.Port.RandomEncounterManager;
 import com.bpham.gameengine.Port.RandomMonsterFactory;
 import com.pokebro.Activity.CaughtListFragment;
 import com.pokebro.Activity.MonsterQueueFragment;
-import com.pokebro.Adapter.MonsterQueueCacher;
 import com.pokebro.Repository.MonsterQueueRepository;
-import com.pokebro.Repository.SharedPreferencesRepository;
+import com.pokebro.Service.MonsterQueueCacheService;
 
 import java.util.Random;
 
@@ -31,7 +30,8 @@ import dagger.Provides;
         injects = {
                 MonsterQueueObservable.class,
                 MonsterQueueFragment.class,
-                CaughtListFragment.class},
+                CaughtListFragment.class,
+                MonsterQueueCacheService.class},
         complete = false,
         library = true
 )
