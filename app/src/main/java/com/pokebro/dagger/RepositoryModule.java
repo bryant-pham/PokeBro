@@ -5,6 +5,7 @@ import android.content.Context;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
 import com.bpham.gameengine.Port.MonsterRepository;
 import com.pokebro.Repository.CaughtPokemonDbHelper;
+import com.pokebro.Repository.MonsterQueueRepository;
 import com.pokebro.Repository.MonsterRepositorySQLite;
 import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Repository.SharedPreferencesRepository;
@@ -31,7 +32,7 @@ public class RepositoryModule {
 
     @Provides
     @Singleton
-    public SharedPreferencesRepository getSharePreferencesRepository(Context context, MonsterDetailRepository monsterDetailRepository) {
+    public MonsterQueueRepository getSharePreferencesRepository(Context context, MonsterDetailRepository monsterDetailRepository) {
         return new SharedPreferencesRepository(context, monsterDetailRepository);
     }
 

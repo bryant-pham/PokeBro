@@ -12,6 +12,8 @@ import com.bpham.gameengine.Port.RandomEncounterManager;
 import com.bpham.gameengine.Port.RandomMonsterFactory;
 import com.pokebro.Activity.CaughtListFragment;
 import com.pokebro.Activity.MonsterQueueFragment;
+import com.pokebro.Adapter.MonsterQueueCacher;
+import com.pokebro.Repository.MonsterQueueRepository;
 import com.pokebro.Repository.SharedPreferencesRepository;
 
 import java.util.Random;
@@ -47,7 +49,7 @@ public class GameEngineModule {
 
     @Provides
     @Singleton
-    public MonsterQueueObservable getMonsterQueueObservable(SharedPreferencesRepository sharedPreferencesRepository) {
+    public MonsterQueueObservable getMonsterQueueObservable(MonsterQueueRepository sharedPreferencesRepository) {
         return new MonsterQueueObservable(sharedPreferencesRepository.getMonsterQueue());
     }
 
