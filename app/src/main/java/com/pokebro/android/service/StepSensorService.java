@@ -1,22 +1,21 @@
 package com.pokebro.android.service;
 
-import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
 import com.pokebro.Adapter.StepSensor;
-import com.pokebro.PokebroApplication;
+import com.pokebro.android.base.BaseService;
 
 import javax.inject.Inject;
 
-public class StepSensorService extends Service {
+public class StepSensorService extends BaseService {
 
     @Inject StepSensor stepSensor;
 
     @Override
     public void onCreate() {
-        ((PokebroApplication) getApplication()).inject(this);
+        super.onCreate();
     }
 
     @Override

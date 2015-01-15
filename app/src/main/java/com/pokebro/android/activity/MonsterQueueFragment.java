@@ -1,6 +1,5 @@
 package com.pokebro.android.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import com.pokebro.PokebroApplication;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
 import com.pokebro.R;
 import com.pokebro.Utility.SwipeDismissListViewTouchListener;
+import com.pokebro.android.base.BaseFragment;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -26,7 +26,7 @@ import javax.inject.Inject;
 /**
  * Created by Bryant on 11/28/2014.
  */
-public class MonsterQueueFragment extends Fragment implements Observer, View.OnClickListener {
+public class MonsterQueueFragment extends BaseFragment implements Observer, View.OnClickListener {
 
     @Inject MonsterQueueObservable monsterQueueObservable;
     @Inject GameEngine gameEngine;
@@ -36,7 +36,6 @@ public class MonsterQueueFragment extends Fragment implements Observer, View.OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((PokebroApplication) getActivity().getApplication()).inject(this);
         monsterQueueObservable.addObserver(this);
         Log.i("FRAGMENT_CREATED", "POKEMON QUEUE FRAGMENT CREATED");
     }

@@ -1,26 +1,26 @@
 package com.pokebro.android.service;
 
-import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
 import com.bpham.gameengine.Model.MonsterQueueObservable;
 import com.pokebro.Adapter.MonsterQueueCacher;
-import com.pokebro.PokebroApplication;
 import com.pokebro.Repository.MonsterQueueRepository;
+import com.pokebro.android.base.BaseService;
 
 import javax.inject.Inject;
 
 /**
  * Created by Bryant on 11/16/2014.
  */
-public class MonsterQueueCacheService extends Service {
+public class MonsterQueueCacheService extends BaseService {
 
     @Inject MonsterQueueObservable monsterQueueObservable;
     @Inject MonsterQueueRepository monsterQueueRepository;
 
+    @Override
     public void onCreate() {
-        ((PokebroApplication) getApplication()).inject(this);
+        super.onCreate();
     }
 
     @Override

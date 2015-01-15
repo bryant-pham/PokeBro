@@ -1,6 +1,5 @@
 package com.pokebro.android.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,9 @@ import android.widget.TextView;
 import com.bpham.gameengine.Model.Monster;
 import com.bpham.gameengine.Port.GameEngine;
 import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.pokebro.PokebroApplication;
 import com.pokebro.Utility.PokemonQueueArrayAdapter;
 import com.pokebro.R;
+import com.pokebro.android.base.BaseFragment;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import javax.inject.Inject;
 /**
  * Created by Bryant on 12/2/2014.
  */
-public class CaughtListFragment extends Fragment {
+public class CaughtListFragment extends BaseFragment {
 
     @Inject GameEngine gameEngine;
     @Inject MonsterDetailRepository monsterDetailRepository;
@@ -34,7 +33,6 @@ public class CaughtListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((PokebroApplication) getActivity().getApplication()).inject(this);
         caughtMonsters = gameEngine.getCaughtMonsters();
         caughtMonsterCount = caughtMonsters.size();
         totalMonsterCount = monsterDetailRepository.getTotalNumberOfMonsters();
