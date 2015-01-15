@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.pokebro.R;
+import com.pokebro.android.activity.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.*;

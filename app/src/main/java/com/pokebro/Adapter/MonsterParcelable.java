@@ -1,4 +1,4 @@
-package com.pokebro.Adapter;
+package com.pokebro.adapter;
 
 import android.os.Parcel;
 import android.os.Parcelable;

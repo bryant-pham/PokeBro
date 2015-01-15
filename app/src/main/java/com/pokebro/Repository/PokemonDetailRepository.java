@@ -1,11 +1,10 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.port.MonsterDetailRepository;
 import com.pokebro.R;
 
 /**

@@ -1,6 +1,6 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
-import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.domain.Monster;
 
 import java.util.List;
 

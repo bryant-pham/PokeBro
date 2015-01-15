@@ -1,4 +1,4 @@
-package com.pokebro.Utility;
+package com.pokebro.support;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

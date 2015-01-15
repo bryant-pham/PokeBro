@@ -1,11 +1,11 @@
-package com.bpham.gameengine.GameEngine;
+package com.bpham.gameengine.gameengine;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.bpham.gameengine.Port.GameEngine;
-import com.bpham.gameengine.Port.MonsterRepository;
-import com.bpham.gameengine.Port.RandomEncounterManager;
-import com.bpham.gameengine.Port.RandomMonsterFactory;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.domain.MonsterQueueObservable;
+import com.bpham.gameengine.port.GameEngine;
+import com.bpham.gameengine.port.MonsterRepository;
+import com.bpham.gameengine.port.RandomEncounterManager;
+import com.bpham.gameengine.port.RandomMonsterFactory;
 
 import org.junit.After;
 import org.junit.Before;

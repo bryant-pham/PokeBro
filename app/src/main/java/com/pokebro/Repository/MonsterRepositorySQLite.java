@@ -1,13 +1,13 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.bpham.gameengine.Port.MonsterRepository;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.bpham.gameengine.port.MonsterRepository;
 
 import java.util.ArrayList;
 import java.util.List;
