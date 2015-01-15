@@ -1,4 +1,4 @@
-package com.bpham.gameengine.Model;
+package com.bpham.gameengine.domain;
 
 /**
  * Created by Bryant on 8/17/2014.

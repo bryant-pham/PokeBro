@@ -1,11 +1,11 @@
-package com.pokebro.Adapter;
+package com.pokebro.adapter;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import com.bpham.gameengine.Port.GameEngine;
+import com.bpham.gameengine.port.GameEngine;
 
 /**
  * Created by Bryant on 9/17/2014.

@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.pokebro.Utility.DrawerItemArrayAdapter;
-import com.pokebro.Model.DrawerItem;
+import com.pokebro.support.DrawerItemArrayAdapter;
+import com.pokebro.domain.DrawerItem;
 import com.pokebro.R;
 import com.pokebro.android.service.MonsterQueueCacheService;
 import com.pokebro.android.service.StepSensorService;

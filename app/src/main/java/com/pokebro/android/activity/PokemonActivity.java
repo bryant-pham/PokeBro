@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pokebro.Adapter.MonsterParcelable;
+import com.pokebro.adapter.MonsterParcelable;
 import com.pokebro.R;
-import com.pokebro.Utility.BitmapResizeUtil;
+import com.pokebro.support.BitmapResizeUtil;
 
 public class PokemonActivity extends Activity {
     private ImageView pokemonView;

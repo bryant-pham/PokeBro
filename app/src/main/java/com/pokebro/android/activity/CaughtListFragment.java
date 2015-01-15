@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.GameEngine;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.pokebro.Utility.PokemonQueueArrayAdapter;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.port.GameEngine;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.pokebro.support.PokemonQueueArrayAdapter;
 import com.pokebro.R;
 import com.pokebro.android.base.BaseFragment;
 

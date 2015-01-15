@@ -2,13 +2,13 @@ package com.pokebro.dagger;
 
 import android.content.Context;
 
-import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.bpham.gameengine.Port.MonsterRepository;
-import com.pokebro.Repository.CaughtPokemonDbHelper;
-import com.pokebro.Repository.MonsterQueueRepository;
-import com.pokebro.Repository.MonsterRepositorySQLite;
-import com.pokebro.Repository.PokemonDetailRepository;
-import com.pokebro.Repository.SharedPreferencesRepository;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.bpham.gameengine.port.MonsterRepository;
+import com.pokebro.repository.CaughtPokemonDbHelper;
+import com.pokebro.repository.MonsterQueueRepository;
+import com.pokebro.repository.MonsterRepositorySQLite;
+import com.pokebro.repository.PokemonDetailRepository;
+import com.pokebro.repository.SharedPreferencesRepository;
 import com.pokebro.android.service.MonsterQueueCacheService;
 
 import javax.inject.Singleton;

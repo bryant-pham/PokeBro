@@ -3,8 +3,8 @@ package com.pokebro.dagger;
 import android.content.Context;
 import android.hardware.SensorManager;
 
-import com.bpham.gameengine.Port.GameEngine;
-import com.pokebro.Adapter.StepSensor;
+import com.bpham.gameengine.port.GameEngine;
+import com.pokebro.adapter.StepSensor;
 import com.pokebro.PokebroApplication;
 import com.pokebro.android.service.StepSensorService;
 

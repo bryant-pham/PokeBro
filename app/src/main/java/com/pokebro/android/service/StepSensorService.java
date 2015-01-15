@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.pokebro.Adapter.StepSensor;
+import com.pokebro.adapter.StepSensor;
 import com.pokebro.android.base.BaseService;
 
 import javax.inject.Inject;

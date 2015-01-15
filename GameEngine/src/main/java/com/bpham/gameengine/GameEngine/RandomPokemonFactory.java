@@ -1,12 +1,9 @@
-package com.bpham.gameengine.GameEngine;
+package com.bpham.gameengine.gameengine;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.bpham.gameengine.Port.RandomMonsterFactory;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.bpham.gameengine.port.RandomMonsterFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 

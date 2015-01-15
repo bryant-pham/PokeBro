@@ -1,18 +1,18 @@
 package com.pokebro.dagger;
 
-import com.bpham.gameengine.GameEngine.PokemonGameEngine;
-import com.bpham.gameengine.GameEngine.RandomEncounterManagerImp;
-import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
-import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.bpham.gameengine.Model.RandomEncounter;
-import com.bpham.gameengine.Port.GameEngine;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
-import com.bpham.gameengine.Port.MonsterRepository;
-import com.bpham.gameengine.Port.RandomEncounterManager;
-import com.bpham.gameengine.Port.RandomMonsterFactory;
+import com.bpham.gameengine.gameengine.PokemonGameEngine;
+import com.bpham.gameengine.gameengine.RandomEncounterManagerImp;
+import com.bpham.gameengine.gameengine.RandomPokemonFactory;
+import com.bpham.gameengine.domain.MonsterQueueObservable;
+import com.bpham.gameengine.domain.RandomEncounter;
+import com.bpham.gameengine.port.GameEngine;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.bpham.gameengine.port.MonsterRepository;
+import com.bpham.gameengine.port.RandomEncounterManager;
+import com.bpham.gameengine.port.RandomMonsterFactory;
 import com.pokebro.android.activity.CaughtListFragment;
 import com.pokebro.android.activity.MonsterQueueFragment;
-import com.pokebro.Repository.MonsterQueueRepository;
+import com.pokebro.repository.MonsterQueueRepository;
 import com.pokebro.android.service.MonsterQueueCacheService;
 
 import java.util.Random;

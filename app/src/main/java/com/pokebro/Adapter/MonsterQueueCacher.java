@@ -1,7 +1,7 @@
-package com.pokebro.Adapter;
+package com.pokebro.adapter;
 
-import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.pokebro.Repository.MonsterQueueRepository;
+import com.bpham.gameengine.domain.MonsterQueueObservable;
+import com.pokebro.repository.MonsterQueueRepository;
 
 import java.util.Observable;
 import java.util.Observer;

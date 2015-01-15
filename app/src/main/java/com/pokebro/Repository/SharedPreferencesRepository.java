@@ -1,10 +1,10 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.port.MonsterDetailRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

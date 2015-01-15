@@ -3,9 +3,9 @@ package com.pokebro.android.service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.pokebro.Adapter.MonsterQueueCacher;
-import com.pokebro.Repository.MonsterQueueRepository;
+import com.bpham.gameengine.domain.MonsterQueueObservable;
+import com.pokebro.adapter.MonsterQueueCacher;
+import com.pokebro.repository.MonsterQueueRepository;
 import com.pokebro.android.base.BaseService;
 
 import javax.inject.Inject;
