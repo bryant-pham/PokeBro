@@ -1,6 +1,5 @@
-package com.pokebro.Activity;
+package com.pokebro.android.activity;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,32 +9,32 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Model.MonsterQueueObservable;
-import com.bpham.gameengine.Port.GameEngine;
-import com.pokebro.Utility.PokemonQueueArrayAdapter;
-import com.pokebro.GameEngine.GameEngineSingleton;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.domain.MonsterQueueObservable;
+import com.bpham.gameengine.port.GameEngine;
+import com.pokebro.support.PokemonQueueArrayAdapter;
 import com.pokebro.R;
-import com.pokebro.Utility.SwipeDismissListViewTouchListener;
+import com.pokebro.support.SwipeDismissListViewTouchListener;
+import com.pokebro.android.base.BaseFragment;
 
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.inject.Inject;
+
 /**
  * Created by Bryant on 11/28/2014.
  */
-public class MonsterQueueFragment extends Fragment implements Observer, View.OnClickListener {
+public class MonsterQueueFragment extends BaseFragment implements Observer, View.OnClickListener {
 
-    private MonsterQueueObservable monsterQueueObservable;
-    private GameEngine gameEngine;
+    @Inject MonsterQueueObservable monsterQueueObservable;
+    @Inject GameEngine gameEngine;
     private ListView pokemonListView;
     private PokemonQueueArrayAdapter arrayAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gameEngine = GameEngineSingleton.getInstance(getActivity()).getGameEngine();
-        monsterQueueObservable = gameEngine.getMonsterQueueObservable();
         monsterQueueObservable.addObserver(this);
         Log.i("FRAGMENT_CREATED", "POKEMON QUEUE FRAGMENT CREATED");
     }

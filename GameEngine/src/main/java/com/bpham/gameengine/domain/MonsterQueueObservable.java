@@ -1,6 +1,5 @@
-package com.bpham.gameengine.Model;
+package com.bpham.gameengine.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 

@@ -1,4 +1,4 @@
-package com.pokebro.Activity;
+package com.pokebro.android.activity;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -7,13 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pokebro.Adapter.MonsterParcelable;
-import com.bpham.gameengine.Model.Monster;
+import com.pokebro.adapter.MonsterParcelable;
 import com.pokebro.R;
-import com.bpham.gameengine.GameEngine.RandomPokemonFactory;
-import com.pokebro.Utility.BitmapResizeUtil;
-
-import java.util.Random;
+import com.pokebro.support.BitmapResizeUtil;
 
 public class PokemonActivity extends Activity {
     private ImageView pokemonView;

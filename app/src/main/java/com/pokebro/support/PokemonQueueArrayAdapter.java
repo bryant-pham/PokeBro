@@ -1,4 +1,4 @@
-package com.pokebro.Utility;
+package com.pokebro.support;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.domain.Monster;
 import com.pokebro.R;
 
 import java.util.List;

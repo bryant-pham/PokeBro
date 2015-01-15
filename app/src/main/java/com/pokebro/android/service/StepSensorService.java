@@ -1,24 +1,21 @@
-package com.pokebro.Service;
+package com.pokebro.android.service;
 
-import android.app.Service;
 import android.content.Intent;
-import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import com.pokebro.GameEngine.GameEngineSingleton;
-import com.pokebro.Adapter.StepSensor;
+import com.pokebro.adapter.StepSensor;
+import com.pokebro.android.base.BaseService;
 
-public class StepSensorService extends Service {
+import javax.inject.Inject;
 
-    private StepSensor stepSensor;
+public class StepSensorService extends BaseService {
 
-    public StepSensorService() {
-    }
+    @Inject StepSensor stepSensor;
 
     @Override
     public void onCreate() {
-        stepSensor = new StepSensor(this, (SensorManager) getSystemService(SENSOR_SERVICE), GameEngineSingleton.getInstance(this).getGameEngine());
+        super.onCreate();
     }
 
     @Override

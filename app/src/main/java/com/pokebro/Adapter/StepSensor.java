@@ -1,12 +1,11 @@
-package com.pokebro.Adapter;
+package com.pokebro.adapter;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import com.bpham.gameengine.Port.GameEngine;
+import com.bpham.gameengine.port.GameEngine;
 
 /**
  * Created by Bryant on 9/17/2014.
@@ -14,12 +13,9 @@ import com.bpham.gameengine.Port.GameEngine;
 public class StepSensor implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor stepSensor;
-    private Context context;
     private GameEngine gameEngine;
 
-
-    public StepSensor(Context context, SensorManager sensorManager, GameEngine gameEngine) {
-        this.context = context;
+    public StepSensor(SensorManager sensorManager, GameEngine gameEngine) {
         this.sensorManager = sensorManager;
         this.gameEngine = gameEngine;
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -35,7 +31,6 @@ public class StepSensor implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        //Toast.makeText(context, "Step Counter: YEAH", Toast.LENGTH_SHORT).show();
         gameEngine.stepSensed();
     }
 

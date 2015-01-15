@@ -1,6 +1,6 @@
-package com.bpham.gameengine.Port;
+package com.bpham.gameengine.port;
 
-import com.bpham.gameengine.Model.Monster;
+import com.bpham.gameengine.domain.Monster;
 
 import java.util.List;
 

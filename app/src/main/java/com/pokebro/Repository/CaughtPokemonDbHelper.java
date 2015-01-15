@@ -1,4 +1,4 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package com.pokebro.Model;
+package com.pokebro.domain;
 
 /**
  * Created by Bryant on 11/26/2014.

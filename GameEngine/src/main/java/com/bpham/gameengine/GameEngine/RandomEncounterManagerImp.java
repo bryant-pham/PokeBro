@@ -1,7 +1,7 @@
-package com.bpham.gameengine.GameEngine;
+package com.bpham.gameengine.gameengine;
 
-import com.bpham.gameengine.Model.RandomEncounter;
-import com.bpham.gameengine.Port.RandomEncounterManager;
+import com.bpham.gameengine.domain.RandomEncounter;
+import com.bpham.gameengine.port.RandomEncounterManager;
 
 import java.util.Random;
 
