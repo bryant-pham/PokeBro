@@ -6,7 +6,7 @@ import android.hardware.SensorManager;
 import com.bpham.gameengine.Port.GameEngine;
 import com.pokebro.Adapter.StepSensor;
 import com.pokebro.PokebroApplication;
-import com.pokebro.Service.StepSensorService;
+import com.pokebro.android.service.StepSensorService;
 
 import javax.inject.Singleton;
 

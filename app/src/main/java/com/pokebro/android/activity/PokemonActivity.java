@@ -1,4 +1,4 @@
-package com.pokebro.Activity;
+package com.pokebro.android.activity;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

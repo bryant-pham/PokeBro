@@ -1,4 +1,4 @@
-package com.pokebro.Service;
+package com.pokebro.android.service;
 
 import android.app.Service;
 import android.content.Intent;

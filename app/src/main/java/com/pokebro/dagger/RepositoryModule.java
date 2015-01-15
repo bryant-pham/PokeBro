@@ -9,7 +9,7 @@ import com.pokebro.Repository.MonsterQueueRepository;
 import com.pokebro.Repository.MonsterRepositorySQLite;
 import com.pokebro.Repository.PokemonDetailRepository;
 import com.pokebro.Repository.SharedPreferencesRepository;
-import com.pokebro.Service.MonsterQueueCacheService;
+import com.pokebro.android.service.MonsterQueueCacheService;
 
 import javax.inject.Singleton;
 

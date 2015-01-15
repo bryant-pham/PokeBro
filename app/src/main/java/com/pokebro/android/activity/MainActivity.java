@@ -1,4 +1,4 @@
-package com.pokebro.Activity;
+package com.pokebro.android.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,8 +16,8 @@ import android.widget.ListView;
 import com.pokebro.Utility.DrawerItemArrayAdapter;
 import com.pokebro.Model.DrawerItem;
 import com.pokebro.R;
-import com.pokebro.Service.MonsterQueueCacheService;
-import com.pokebro.Service.StepSensorService;
+import com.pokebro.android.service.MonsterQueueCacheService;
+import com.pokebro.android.service.StepSensorService;
 
 import java.util.ArrayList;
 import java.util.List;
