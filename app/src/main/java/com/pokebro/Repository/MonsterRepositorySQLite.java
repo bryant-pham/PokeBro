@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.bpham.gameengine.domain.Monster;
 import com.bpham.gameengine.port.MonsterDetailRepository;
-import com.bpham.gameengine.port.MonsterRepository;
+import com.pokebro.port.MonsterRepository;
+import com.pokebro.domain.CaughtMonster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,5 +59,23 @@ public class MonsterRepositorySQLite implements MonsterRepository {
             caughtMonsterCount = result.getInt(resultColumnIndex);
         }
         return caughtMonsterCount;
+    }
+
+    @Override
+    public List<CaughtMonster> getCaughtMonsters() {
+        final String query = "SELECT " + CaughtPokemonTable.POKEMON_NAME + ", COUNT(*) FROM " + CaughtPokemonTable.TABLE_NAME + " GROUP BY 1";
+        List<CaughtMonster> caughtMonsterList = new ArrayList<>();
+
+        Cursor results = db.rawQuery(query, null);
+        if(results.moveToFirst()) {
+            do {
+                String pokemonName = results.getString(0);
+                int monsterQuantity = results.getInt(1);
+                int imageResource = monsterDetailRepository.getImageResourceByMonsterName(pokemonName);
+                Monster monster = new Monster(pokemonName, imageResource);
+                caughtMonsterList.add(new CaughtMonster(monster, monsterQuantity));
+            } while(results.moveToNext());
+        }
+        return caughtMonsterList;
     }
 }

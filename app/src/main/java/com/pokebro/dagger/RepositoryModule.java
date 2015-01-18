@@ -3,7 +3,8 @@ package com.pokebro.dagger;
 import android.content.Context;
 
 import com.bpham.gameengine.port.MonsterDetailRepository;
-import com.bpham.gameengine.port.MonsterRepository;
+import com.pokebro.port.MonsterRepository;
+import com.pokebro.android.activity.MonsterQueueFragment;
 import com.pokebro.repository.CaughtPokemonDbHelper;
 import com.pokebro.repository.MonsterQueueRepository;
 import com.pokebro.repository.MonsterRepositorySQLite;
@@ -21,7 +22,9 @@ import dagger.Provides;
  */
 
 @Module(
-        injects = {MonsterQueueCacheService.class},
+        injects = {
+                MonsterQueueCacheService.class,
+                MonsterQueueFragment.class},
         library = true,
         complete = false
 )
