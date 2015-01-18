@@ -7,7 +7,6 @@ import com.bpham.gameengine.domain.MonsterQueueObservable;
 import com.bpham.gameengine.domain.RandomEncounter;
 import com.bpham.gameengine.port.GameEngine;
 import com.bpham.gameengine.port.MonsterDetailRepository;
-import com.bpham.gameengine.port.MonsterRepository;
 import com.bpham.gameengine.port.RandomEncounterManager;
 import com.bpham.gameengine.port.RandomMonsterFactory;
 import com.pokebro.android.activity.CaughtListFragment;
@@ -57,8 +56,7 @@ public class GameEngineModule {
     @Singleton
     public GameEngine getGameEngine(RandomMonsterFactory randomMonsterFactory,
                                     RandomEncounterManager randomEncounterManager,
-                                    MonsterQueueObservable monsterQueueObservable,
-                                    MonsterRepository monsterRepository) {
-        return new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable, monsterRepository);
+                                    MonsterQueueObservable monsterQueueObservable) {
+        return new PokemonGameEngine(randomMonsterFactory, randomEncounterManager, monsterQueueObservable);
     }
 }
