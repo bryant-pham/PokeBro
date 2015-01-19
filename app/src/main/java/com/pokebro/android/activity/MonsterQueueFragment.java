@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.bpham.gameengine.domain.Monster;
 import com.bpham.gameengine.domain.MonsterQueueObservable;
 import com.bpham.gameengine.port.GameEngine;
+import com.pokebro.port.MonsterRepository;
 import com.pokebro.support.PokemonQueueArrayAdapter;
 import com.pokebro.R;
 import com.pokebro.support.SwipeDismissListViewTouchListener;
@@ -29,6 +30,7 @@ public class MonsterQueueFragment extends BaseFragment implements Observer, View
 
     @Inject MonsterQueueObservable monsterQueueObservable;
     @Inject GameEngine gameEngine;
+    @Inject MonsterRepository monsterRepository;
     private ListView pokemonListView;
     private PokemonQueueArrayAdapter arrayAdapter;
 
@@ -95,7 +97,7 @@ public class MonsterQueueFragment extends BaseFragment implements Observer, View
         final Monster monster = monsterQueueObservable.getMonster(position);
         new Thread(new Runnable(){
             public void run() {
-                gameEngine.saveMonster(monster);
+                monsterRepository.saveMonster(monster);
             }
         }).start();
         removeMonsterFromQueue(position);
