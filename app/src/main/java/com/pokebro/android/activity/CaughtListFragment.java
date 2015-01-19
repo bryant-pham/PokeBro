@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bpham.gameengine.domain.Monster;
-import com.bpham.gameengine.port.GameEngine;
 import com.bpham.gameengine.port.MonsterDetailRepository;
-import com.pokebro.support.PokemonQueueArrayAdapter;
+import com.pokebro.domain.CaughtMonster;
+import com.pokebro.port.MonsterRepository;
+import com.pokebro.support.CaughtListArrayAdapter;
 import com.pokebro.R;
 import com.pokebro.android.base.BaseFragment;
 
@@ -23,17 +23,17 @@ import javax.inject.Inject;
  */
 public class CaughtListFragment extends BaseFragment {
 
-    @Inject GameEngine gameEngine;
     @Inject MonsterDetailRepository monsterDetailRepository;
+    @Inject MonsterRepository monsterRepository;
     ListView monsterListView;
-    List<Monster> caughtMonsters;
+    List<CaughtMonster> caughtMonsters;
     int caughtMonsterCount;
     int totalMonsterCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        caughtMonsters = gameEngine.getCaughtMonsters();
+        caughtMonsters = monsterRepository.getCaughtMonsters();
         caughtMonsterCount = caughtMonsters.size();
         totalMonsterCount = monsterDetailRepository.getTotalNumberOfMonsters();
     }
@@ -54,8 +54,8 @@ public class CaughtListFragment extends BaseFragment {
         return fragment;
     }
 
-    public void setMonsterListView(List<Monster> caughtMonsters, ListView monsterListView) {
-        PokemonQueueArrayAdapter adapter = new PokemonQueueArrayAdapter(getActivity(), R.layout.listview_pokemon_queue, caughtMonsters);
+    public void setMonsterListView(List<CaughtMonster> caughtMonsters, ListView monsterListView) {
+        CaughtListArrayAdapter adapter = new CaughtListArrayAdapter(getActivity(), R.layout.listview_pokemon_queue, caughtMonsters);
         monsterListView.setAdapter(adapter);
     }
 }

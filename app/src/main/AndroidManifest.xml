@@ -23,11 +23,6 @@
             android:name=".android.activity.PokemonActivity"
             android:label="@string/title_activity_pokemon" >
         </activity>
-        <activity
-            android:name="com.pokebro.Activity.MonsterQueueActivity"
-            android:label="@string/title_activity_pokemon_queue" >
-
-        </activity>
         <service
             android:name=".android.service.StepSensorService"
             android:enabled="true"
@@ -48,5 +43,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
