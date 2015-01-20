@@ -5,7 +5,7 @@ import android.os.IBinder;
 
 import com.bpham.gameengine.domain.MonsterQueueObservable;
 import com.pokebro.adapter.MonsterQueueCacher;
-import com.pokebro.repository.MonsterQueueRepository;
+import com.pokebro.port.MonsterQueueRepository;
 import com.pokebro.android.base.BaseService;
 
 import javax.inject.Inject;

@@ -6,7 +6,7 @@ import com.bpham.gameengine.port.MonsterDetailRepository;
 import com.pokebro.port.MonsterRepository;
 import com.pokebro.android.activity.MonsterQueueFragment;
 import com.pokebro.repository.CaughtPokemonDbHelper;
-import com.pokebro.repository.MonsterQueueRepository;
+import com.pokebro.port.MonsterQueueRepository;
 import com.pokebro.repository.MonsterRepositorySQLite;
 import com.pokebro.repository.PokemonDetailRepository;
 import com.pokebro.repository.SharedPreferencesRepository;

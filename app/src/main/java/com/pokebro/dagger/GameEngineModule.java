@@ -11,7 +11,7 @@ import com.bpham.gameengine.port.RandomEncounterManager;
 import com.bpham.gameengine.port.RandomMonsterFactory;
 import com.pokebro.android.activity.CaughtListFragment;
 import com.pokebro.android.activity.MonsterQueueFragment;
-import com.pokebro.repository.MonsterQueueRepository;
+import com.pokebro.port.MonsterQueueRepository;
 import com.pokebro.android.service.MonsterQueueCacheService;
 
 import java.util.Random;

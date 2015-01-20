@@ -1,4 +1,4 @@
-package com.pokebro.repository;
+package com.pokebro.port;
 
 import com.bpham.gameengine.domain.Monster;
 
