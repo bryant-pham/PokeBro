@@ -1,4 +1,4 @@
-package com.pokebro.Activity;
+package com.pokebro.espresso;
 
 import android.support.v4.widget.DrawerLayout;
 import android.test.ActivityInstrumentationTestCase2;
