@@ -42,7 +42,9 @@ dependencies {
     androidTestCompile('com.google.dexmaker:dexmaker-mockito:1.2') {
         exclude module: 'mockito-core'
     }
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.0') {
+        exclude group: 'javax.inject'
+    }
     androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude module: 'espresso-core'
         exclude module: 'support-v4'
