@@ -38,6 +38,7 @@ public class CaughtListArrayAdapter extends ArrayAdapter<CaughtMonster> {
             viewHolder = new ViewHolder();
             viewHolder.pokemonName = (TextView) rowView.findViewById(R.id.pokemonName);
             viewHolder.pokemonImage = (ImageView) rowView.findViewById(R.id.pokemonImage);
+            viewHolder.pokemonQuantity = (TextView) rowView.findViewById(R.id.pokemonQuantity);
             rowView.setTag(viewHolder);
         }
 
@@ -45,6 +46,7 @@ public class CaughtListArrayAdapter extends ArrayAdapter<CaughtMonster> {
         CaughtMonster pokemon = caughtMonsterList.get(position);
         viewHolder.pokemonName.setText(pokemon.getMonster().getName());
         viewHolder.pokemonImage.setImageResource(pokemon.getMonster().getImageResource());
+        viewHolder.pokemonQuantity.setText(Integer.toString(pokemon.getMonsterQuantity()));
 
         return rowView;
     }
@@ -52,5 +54,6 @@ public class CaughtListArrayAdapter extends ArrayAdapter<CaughtMonster> {
     static class ViewHolder {
         public TextView pokemonName;
         public ImageView pokemonImage;
+        public TextView pokemonQuantity;
     }
 }

@@ -28,6 +28,7 @@ public class CaughtListFragment extends BaseFragment {
     ListView monsterListView;
     List<CaughtMonster> caughtMonsters;
     TextView monsterCounterTextView;
+    TextView monsterQuantityTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class CaughtListFragment extends BaseFragment {
     }
 
     public void setMonsterListView(List<CaughtMonster> caughtMonsters, ListView monsterListView) {
-        CaughtListArrayAdapter adapter = new CaughtListArrayAdapter(getActivity(), R.layout.listview_pokemon_queue, caughtMonsters);
+        CaughtListArrayAdapter adapter = new CaughtListArrayAdapter(getActivity(), R.layout.listview_caught_pokemon, caughtMonsters);
         monsterListView.setAdapter(adapter);
     }
 
