@@ -49,4 +49,5 @@ dependencies {
         exclude module: 'espresso-core'
         exclude module: 'support-v4'
     }
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 }
