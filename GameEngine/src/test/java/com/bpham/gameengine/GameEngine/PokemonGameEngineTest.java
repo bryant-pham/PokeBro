@@ -3,7 +3,6 @@ package com.bpham.gameengine.gameengine;
 import com.bpham.gameengine.domain.Monster;
 import com.bpham.gameengine.domain.MonsterQueueObservable;
 import com.bpham.gameengine.port.GameEngine;
-import com.bpham.gameengine.port.MonsterRepository;
 import com.bpham.gameengine.port.RandomEncounterManager;
 import com.bpham.gameengine.port.RandomMonsterFactory;
 
@@ -19,13 +18,12 @@ public class PokemonGameEngineTest {
     @Mock private RandomMonsterFactory monsterFactoryMock;
     @Mock private RandomEncounterManager encounterManagerMock;
     @Mock private MonsterQueueObservable observableQueue;
-    @Mock private MonsterRepository repo;
     private GameEngine pokemonGameEngine;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock, observableQueue, repo);
+        pokemonGameEngine = new PokemonGameEngine(monsterFactoryMock, encounterManagerMock, observableQueue);
     }
 
     @After
@@ -54,14 +52,5 @@ public class PokemonGameEngineTest {
 
         verify(observableQueue, times(0)).addMonster(mockMonster);
         verify(encounterManagerMock, times(0)).resetCounter();
-    }
-
-    @Test
-    public void testSaveMonster() {
-        Monster mockMonster = mock(Monster.class);
-
-        pokemonGameEngine.saveMonster(mockMonster);
-
-        verify(repo, times(1)).saveMonster(mockMonster);
     }
 }
