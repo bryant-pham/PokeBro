@@ -4,17 +4,17 @@ package com.bpham.gameengine.domain;
  * Created by Bryant on 8/22/2014.
  */
 public class RandomEncounter {
-    private int randomCounter;
+    private int counter;
 
-    public int getRandomCounter() {
-        return randomCounter;
+    public int getCounter() {
+        return counter;
     }
 
-    public void setRandomCounter(int randomCounter) {
-        this.randomCounter = randomCounter;
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     public void decrementCounter(int decrementValue) {
-        this.randomCounter -= decrementValue;
+        this.counter -= decrementValue;
     }
 }
