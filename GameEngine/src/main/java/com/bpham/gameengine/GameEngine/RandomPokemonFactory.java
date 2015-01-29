@@ -33,8 +33,6 @@ public class RandomPokemonFactory implements RandomMonsterFactory {
         String pokemonName = pokemonNames.get(generateRandomNumber());
         int drawableResource = repository.getImageResourceByMonsterName(pokemonName);
 
-        Monster pokemon = new Monster(pokemonName, drawableResource);
-
-        return pokemon;
+        return new Monster(pokemonName, drawableResource);
     }
 }
