@@ -37,17 +37,11 @@ public class RandomPokemonFactoryTest {
         randomPokemonFactory = new RandomPokemonFactory(rngMock, repository);
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
     @Test
     public void testCreateRandomMonster_returnsMonster() throws Exception {
         Monster returnedMonster = randomPokemonFactory.createRandomMonster();
 
-        assertThat(returnedMonster, instanceOf(Monster.class));
-        assertNotNull(returnedMonster.getName());
+        assertEquals(returnedMonster.getName(), "bulbasaur");
         assertNotNull(returnedMonster.getImageResource());
     }
 }

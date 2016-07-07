@@ -35,17 +35,17 @@ public class RandomEncounterManagerImp implements RandomEncounterManager {
 
     @Override
     public int getCounter() {
-        return randomEncounter.getRandomCounter();
+        return randomEncounter.getCounter();
     }
 
     @Override
     public void resetCounter() {
-        randomEncounter.setRandomCounter(generateRandomNumber());
+        randomEncounter.setCounter(generateRandomNumber());
     }
 
     @Override
     public boolean shouldEncounterMonster() {
         decrementCounter();
-        return randomEncounter.getRandomCounter() <= 0;
+        return randomEncounter.getCounter() <= 0;
     }
 }
