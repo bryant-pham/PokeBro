@@ -1,14 +1,16 @@
-package com.pokebro.Repository;
+package com.pokebro.repository;
 
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 
-import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.port.MonsterDetailRepository;
 import com.pokebro.R;
 
 /**
  * Created by Bryant on 11/8/2014.
  */
-public class PokemonDetailRepository implements MonsterDetailRepository {
+public final class PokemonDetailRepository implements MonsterDetailRepository {
 
     private static final Hashtable<String, Integer> pokemonTable = new Hashtable();
 
@@ -167,7 +169,17 @@ public class PokemonDetailRepository implements MonsterDetailRepository {
     }
 
     @Override
-    public Hashtable<String, Integer> getMonsterHashtable() {
-        return pokemonTable;
+    public int getImageResourceByMonsterName(String monsterName) {
+        return pokemonTable.get(monsterName);
+    }
+
+    @Override
+    public List<String> getListOfMonsterNames() {
+        return Collections.list(pokemonTable.keys());
+    }
+
+    @Override
+    public int getTotalNumberOfMonsters() {
+        return pokemonTable.size();
     }
 }

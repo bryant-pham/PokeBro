@@ -1,7 +1,8 @@
-package com.bpham.gameengine.GameEngine;
+package com.bpham.gameengine.gameengine;
 
-import com.bpham.gameengine.Model.Monster;
-import com.bpham.gameengine.Port.MonsterDetailRepository;
+import com.bpham.gameengine.domain.Monster;
+import com.bpham.gameengine.port.MonsterDetailRepository;
+import com.bpham.gameengine.port.RandomMonsterFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +13,8 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.*;
 
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -22,16 +24,16 @@ public class RandomPokemonFactoryTest {
     @Mock private Random rngMock;
     @Mock private MonsterDetailRepository repository;
     private RandomMonsterFactory randomPokemonFactory;
-    private final static Hashtable<String, Integer> mockPokemonHashtable = new Hashtable<String, Integer>();
+    private final static List<String> monsterNames = new ArrayList<String>();
 
     static {
-        mockPokemonHashtable.put("bulbasaur", 32344);
+        monsterNames.add("bulbasaur");
     }
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        when(repository.getMonsterHashtable()).thenReturn(mockPokemonHashtable);
+        when(repository.getListOfMonsterNames()).thenReturn(monsterNames);
         randomPokemonFactory = new RandomPokemonFactory(rngMock, repository);
     }
 

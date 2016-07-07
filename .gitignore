@@ -10,5 +10,6 @@ local.properties
 .idea
 .DS_Store
 build/
+gradle
 
 app/build
